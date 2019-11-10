@@ -1,0 +1,38 @@
+name: BloodyMary
+
+options:
+  minimumXcodeGenVersion: "2.5.0"
+  bundleIdPrefix: com.theInkedEngineer
+  indentWidth: 2
+  xcodeVersion: 11.1
+  deploymentTarget:
+    iOS: "10.0"
+  generateEmptyDirectories: true
+  
+targets:
+  BloodyMary:
+    type: framework
+    platform: iOS
+    attributes:
+      ProvisioningStyle: Automatic
+    sources: [BloodyMary]
+    info:
+      path: BloodyMary/Resources/Info.plist
+      properties:
+        CFBundleIdentifier: "$(PRODUCT_BUNDLE_IDENTIFIER)"
+        CFBundleInfoDictionaryVersion: "6.0"
+        CFBundleExecutable: "$(EXECUTABLE_NAME)"
+        CFBundleName: "$(PRODUCT_NAME)"
+        CFBundleDevelopmentRegion: "$(DEVELOPMENT_LANGUAGE)"
+        CFBundleShortVersionString: "0.1.0"
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        CFBundlePackageType: "FMWK"
+
+schemes:
+  Developement:
+      build:
+        targets:
+          BloodyMary: all
+      archive:
+        customArchiveName: BloodyMary_Development
+        revealArchiveInOrganizer: false
