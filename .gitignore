@@ -1,6 +1,7 @@
 
 # build/
 *.xcworkspace
+*.xcodeproj
 *.pbxuser
 !default.pbxuser
 *.mode1v3
@@ -19,6 +20,7 @@ DerivedData
 Pods/
 Carthage/
 /build
+Info.plist
 
 # Project Specific
 TestApp
