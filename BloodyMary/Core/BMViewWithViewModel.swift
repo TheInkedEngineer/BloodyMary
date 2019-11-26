@@ -57,7 +57,7 @@ private var modelKey = "BMViewWithViewModel_model_key"
 ///
 /// By altering the view model, different states of the view can be tested in a fast efficient way.
 ///
-protocol BMViewWithViewModel: BMView {
+public protocol BMViewWithViewModel: BMView {
   /// The type of the `ViewModel` associated with the view.
   associatedtype VM: BMViewModel
   
@@ -73,7 +73,7 @@ protocol BMViewWithViewModel: BMView {
   func update(oldViewModel: VM?)
 }
 
-extension BMViewWithViewModel {
+public extension BMViewWithViewModel {
   /// The ViewModel of the View. Once changed, the `update(oldViewModel: VM?)` will be called.
   /// The model variable is automatically created when conforming to the ViewWithModel protocol.
   /// Swift is inferring the Type through the `oldModel` parameter of the `update(oldModel: BMViewModel?)` method
