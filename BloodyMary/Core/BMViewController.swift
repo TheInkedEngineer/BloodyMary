@@ -131,6 +131,7 @@ public extension BMViewController {
 
 /// A View used to do  contain other viewcontrollers.
 public class BMContainerView: UIView {
+  /// Lays out subviews. Setting the frame of each element equal to the bounds of its parent.
   public override func layoutSubviews() {
     super.layoutSubviews()
     self.subviews.forEach {
