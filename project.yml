@@ -24,9 +24,13 @@ targets:
         CFBundleExecutable: "$(EXECUTABLE_NAME)"
         CFBundleName: "$(PRODUCT_NAME)"
         CFBundleDevelopmentRegion: "$(DEVELOPMENT_LANGUAGE)"
-        CFBundleShortVersionString: "0.1.0"
-        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        CFBundleShortVersionString: "$(CURRENT_PROJECT_VERSION)"
+        CFBundleVersion: "$(CURRENT_PROJECT_VERSION)"
         CFBundlePackageType: "FMWK"
+    settings:
+      TARGETED_DEVICE_FAMILY: 1,2
+      SUPPORTS_MACCATALYST: "NO"
+    
 
 schemes:
   Developement:
