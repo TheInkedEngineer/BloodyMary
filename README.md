@@ -6,7 +6,7 @@
 
 `BloodyMary` is an one-directional MVVM framework.
 
-[Twitter](https://img.shields.io/twitter/url/https/theinkedgineer.svg?label=TheInkedgineer&style=social)](https://twitter.com/theinkedgineer)
+[![Twitter](https://img.shields.io/twitter/url/https/theinkedgineer.svg?label=TheInkedgineer&style=social)](https://twitter.com/theinkedgineer)
 
 # 1. Requirements and Compatibility
 | Swift               | SwiftKnife     |  iOS     |
