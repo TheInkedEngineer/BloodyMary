@@ -1,5 +1,5 @@
 <p align="center">
-<img src="logo.png" alt="BloodyMary logo" style="width:400px;">
+<img src="logo.png" alt="BloodyMary logo" width="400">
 </p>
 
 # BloodyMary
