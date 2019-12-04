@@ -8,6 +8,10 @@
 
 `BloodyMary` is a stripped down version of [Tempura](https://github.com/BendingSpoons/tempura-swift). It is a one-directional [MVVM](https://en.wikipedia.org/wiki/Model–view–viewmodel) inspired framework that helps you write clean code and seperate the responsabilities properly.
 
+### RoadMap
+[ ] Custom Navigation System
+[ ] Integramte Combine
+
 # 1. Requirements and Compatibility
 | Swift               | SwiftKnife     |  iOS     |
 |-----------------|----------------|---------|
