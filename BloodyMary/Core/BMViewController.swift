@@ -19,13 +19,13 @@ open class BMViewController<View: BMViewWithViewControllerAndViewModel & UIView>
   /// This flag is needed since `viewWillLayoutSubviews` is called several times, but constriants should be added once.
   private var didActivateConstraints = false
 
-  /// The rootView associated with the `ModelledViewController`.
+  /// The rootView associated with the `BMViewController`.
   public var rootView: View {
     // swiftlint:disable:next force_cast
     return self.view as! View
   }
 
-  /// The latest `ViewModel` received by this `ModelledViewController`
+  /// The latest `ViewModel` received by this `BMViewController`
   /// This should not be directly set. Please use `update(to: View.VM)`.
   public var viewModel: View.VM? {
      willSet {
