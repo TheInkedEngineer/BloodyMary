@@ -9,10 +9,12 @@
 `BloodyMary` is a stripped down version of [Tempura](https://github.com/BendingSpoons/tempura-swift). It is a one-directional [MVVM](https://en.wikipedia.org/wiki/Model–view–viewmodel) inspired framework that helps you write clean code and seperate the responsabilities properly.
 
 ### RoadMap
-[ ] Custom Navigation System
-[ ] Integramte Combine
+
+- [ ] Custom Navigation System
+- [ ] Integrate Combine
 
 # 1. Requirements and Compatibility
+
 | Swift               | SwiftKnife     |  iOS     |
 |-----------------|----------------|---------|
 |       5.1+          | 1.x                |  10+     |
@@ -26,9 +28,11 @@ Add the following line to your Podfile
 
 
 # 3. Documentation
+
 `BloodyMary` is fully documented. Checkout the documentation [**here**](https://theinkedengineer.github.io/BloodyMary/docs/1.x/index.html).
 
 # 4. Code Example
+
 ```swift
 struct RemindersListViewModel: BMViewModel {
   var reminders: [Models.Reminders]
@@ -62,11 +66,13 @@ class RemindersListViewController: BMViewController {
   }
 }
 ```
+
 # 5. Contribution
 
 **Working on your first Pull Request?** You can learn how from this *free* series [How to Contribute to an Open Source Project on GitHub](https://egghead.io/series/how-to-contribute-to-an-open-source-project-on-github)
 
 ## Generate the project
+
 To generate this project locally, you need [xcodegen](https://github.com/yonaskolb/XcodeGen). It is a great tool to customize a project and generate it on the go.
 
 You can either install it manually following their steps, or just run my `setup.sh` script. It automatically installs [Homebrew](https://brew.sh) if it is missing, installs `xcodegen`, removes existing (if present) `.xcodeproj`, run `xcodegen` and moves configuratiom files to their appropriate place.
