@@ -11,6 +11,10 @@ All relative changes will be documented in this file. \
 ***
 
 ## 1.0.0
+### December 08, 2019
+
+* Fix UIKit import in `BMViewController`
+
 ### December 04, 2019
 
 * Initial release
