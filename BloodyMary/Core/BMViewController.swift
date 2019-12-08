@@ -4,7 +4,7 @@
 //  Copyright © TheInkedEngineer. All rights reserved.
 // 
 
-import Foundation
+import UIKit
 
 /// ## Overview
 /// A `BMViewController` replaces the default `UIViewController`. It manages a single screen,
