@@ -24,7 +24,7 @@
 ## Cocoapods
 
 Add the following line to your Podfile
-` pod 'BloodyMary' ~> '1.0' `
+` pod 'BloodyMary' ~> '1.0.1' `
 
 
 # 3. Documentation
