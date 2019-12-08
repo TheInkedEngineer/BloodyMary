@@ -24,7 +24,7 @@ targets:
         CFBundleExecutable: "$(EXECUTABLE_NAME)"
         CFBundleName: "$(PRODUCT_NAME)"
         CFBundleDevelopmentRegion: "$(DEVELOPMENT_LANGUAGE)"
-        CFBundleShortVersionString: "$(CURRENT_PROJECT_VERSION)"
+        CFBundleShortVersionString: "1.0.1"
         CFBundleVersion: "$(CURRENT_PROJECT_VERSION)"
         CFBundlePackageType: "FMWK"
     settings:
