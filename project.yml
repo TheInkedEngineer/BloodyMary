@@ -1,10 +1,10 @@
 name: BloodyMary
 
 options:
-  minimumXcodeGenVersion: "2.5.0"
+  minimumXcodeGenVersion: "2.11.0"
   bundleIdPrefix: com.theInkedEngineer
   indentWidth: 2
-  xcodeVersion: 11.1
+  xcodeVersion: 11.3
   deploymentTarget:
     iOS: "10.0"
   generateEmptyDirectories: true
@@ -30,8 +30,31 @@ targets:
     settings:
       TARGETED_DEVICE_FAMILY: 1,2
       SUPPORTS_MACCATALYST: "NO"
+  
+  BloodyMaryDemo:
+    type: application
+    platform: iOS
+    attributes:
+      ProvisioningStyle: Automatic
+    sources: [BloodyMaryDemo]
+    info:
+      path: BloodyMaryDemo/Resources/Info.plist
+      properties:
+        CFBundleIdentifier: "$(PRODUCT_BUNDLE_IDENTIFIER)"
+        CFBundleInfoDictionaryVersion: "6.0"
+        CFBundleExecutable: "$(EXECUTABLE_NAME)"
+        CFBundleName: "$(PRODUCT_NAME)"
+        CFBundleDevelopmentRegion: "$(DEVELOPMENT_LANGUAGE)"
+        CFBundleShortVersionString: "1.0"
+        CFBundleVersion: "1"
+        CFBundlePackageType: "APPL"
+        LSRequiresIPhoneOS: true
+        UILaunchStoryboardName: "LaunchScreen"
+        UIRequiredDeviceCapabilities: ["armv7"]
+        UISupportedInterfaceOrientations: ["UIInterfaceOrientationPortrait"]
+    settings:
+      TARGETED_DEVICE_FAMILY: 1
     
-
 schemes:
   Developement:
       build:
