@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     self.window = self.window ?? UIWindow(frame: UIScreen.main.bounds)
     let vc = WhiteViewController()
-    let vm = WhiteViewModel()
+    let vm = WhiteViewModel(screenToNavigateTo: .red)
     vc.viewModel = vm
     self.window?.rootViewController = vc
     self.window?.makeKeyAndVisible()

@@ -7,15 +7,12 @@
 import BloodyMary
 import UIKit
 
-struct WhiteViewModel: BMViewModel {
-  var screenToNavigateTo: Screen
-}
+struct GreenViewModel: BMViewModel {}
 
-class WhiteView: UIView, BMViewWithViewControllerAndViewModel {
-  
+class GreenView: UIView, BMViewWithViewControllerAndViewModel {
   let button = UIButton()
   
-  var didTapButton: ((String) -> Void)?
+  var didTapButton: (() -> Void)?
   
   func configure() {
     self.addSubview(self.button)
@@ -23,14 +20,14 @@ class WhiteView: UIView, BMViewWithViewControllerAndViewModel {
   }
   
   func style() {
-    self.backgroundColor = .white
+    self.backgroundColor = .green
     
     self.button.backgroundColor = .black
     self.button.setTitleColor(.white, for: .normal)
     self.button.setTitle("Navigate", for: .normal)
   }
   
-  func update(oldViewModel: WhiteViewModel?) {}
+  func update(oldViewModel: GreenViewModel?) {}
   
   func layout() {
     self.button.translatesAutoresizingMaskIntoConstraints = false
@@ -41,9 +38,6 @@ class WhiteView: UIView, BMViewWithViewControllerAndViewModel {
   }
   
   @objc private func tappedButton() {
-    guard let model = self.viewModel else {
-      return
-    }
-    self.didTapButton?(model.screenToNavigateTo.rawValue)
+    self.didTapButton?()
   }
 }
