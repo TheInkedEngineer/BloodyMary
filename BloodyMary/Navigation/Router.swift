@@ -75,17 +75,13 @@ public struct Router {
     self.routingQueue.async {
       DispatchQueue.main.async {
         let topViewController = Router.topViewController()
-        if topViewController.hasNavigationController {
-          guard let _ = topViewController.navigationController?.popViewController(animated: animated) else {
-            topViewController.dismiss(animated: animated)
-            return
-          }
-        } else {
-          topViewController.dismiss(animated: animated)
+        guard let stackViewControllers = topViewController.navigationController?.viewControllers, stackViewControllers.count > 1 else {
+          topViewController.dismiss(animated: animated, completion: completion)
+          return
         }
+        topViewController.navigationController?.popViewController(animated: animated, completion: completion)
       }
     }
-    completion?()
   }
 }
 
@@ -113,8 +109,7 @@ private extension Router {
       return
     }
     
-    parent.navigationController?.pushViewController(destination, animated: animated)
-    completion?()
+    parent.navigationController?.pushViewController(destination, animated: animated, completion: completion)
   }
   
   private func present(

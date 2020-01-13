@@ -15,13 +15,13 @@ extension UINavigationController {
   ///   - completion: The completion to execute once the view controller is pushed to the stack.
   public func pushViewController( _ viewController: UIViewController, animated: Bool, completion: (() -> Void)?) {
     
+    self.pushViewController(viewController, animated: animated)
+    
     guard animated, let coordinator = self.transitionCoordinator else {
-      self.pushViewController(viewController, animated: false)
       DispatchQueue.main.async { completion?() }
       return
     }
     
-    self.pushViewController(viewController, animated: true)
     coordinator.animate(alongsideTransition: nil) { _ in completion?() }
   }
   
@@ -30,14 +30,14 @@ extension UINavigationController {
   ///   - animated: Set this value to true to animate the transition. Pass false if you are setting up a navigation controller before its view is displayed.
   ///   - completion: The completion to execute once the view controller is poped.
   func popViewController( animated: Bool, completion: (() -> Void)?) {
-
+    
+    self.popViewController(animated: animated)
+    
     guard animated, let coordinator = self.transitionCoordinator else {
-      self.popViewController(animated: false)
       DispatchQueue.main.async { completion?() }
       return
     }
     
-    self.popViewController(animated: true)
     coordinator.animate(alongsideTransition: nil) { _ in completion?() }
   }
 }
