@@ -15,7 +15,7 @@ public protocol InspectableHierarchy: AnyObject {
 }
 
 /// A protocol that only `UIViewController` should conform to to returnm the `presentedViewController` if present.
-private protocol InspectablePresentedViewController: AnyObject {
+public protocol InspectablePresentedViewController: AnyObject {
   var nextViewController: UIViewController? { get }
 }
 
@@ -52,7 +52,7 @@ extension UITabBarController: InspectableHierarchy {
 /// Conformance of `UIViewController` to the `InspectablePresentedViewController` protocol.
 /// The `UIViewController` can have an optional `presentedViewController`, otherwise it is the highest of the visible stack.
 extension UIViewController: InspectablePresentedViewController {
-  var nextViewController: UIViewController? {
+  public var nextViewController: UIViewController? {
     self.presentedViewController
   }
 }
