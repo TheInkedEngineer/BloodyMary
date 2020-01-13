@@ -55,3 +55,23 @@ targets:
         UISupportedInterfaceOrientations: ["UIInterfaceOrientationPortrait"]
     settings:
       TARGETED_DEVICE_FAMILY: 1
+
+  BloodyMaryUnitTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - path: BloodyMaryUnitTests
+    dependencies:
+      - target: BloodyMary
+      - target: BloodyMaryDemo
+    info:
+      path: BloodyMaryUnitTests/Resources/Info.plist
+      properties:
+        CFBundleDevelopmentRegion: "$(DEVELOPMENT_LANGUAGE)"
+        CFBundleExecutable: "$(EXECUTABLE_NAME)"
+        CFBundleIdentifier: "$(PRODUCT_BUNDLE_IDENTIFIER)"
+        CFBundleInfoDictionaryVersion: "6.0"
+        CFBundleName: "$(PRODUCT_NAME)"
+        CFBundlePackageType: "$(PRODUCT_BUNDLE_PACKAGE_TYPE)"
+        CFBundleShortVersionString: "1.0"
+        CFBundleVersion: "1"
