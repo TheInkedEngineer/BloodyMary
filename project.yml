@@ -63,7 +63,6 @@ targets:
       - path: BloodyMaryUnitTests
     dependencies:
       - target: BloodyMary
-      - target: BloodyMaryDemo
     info:
       path: BloodyMaryUnitTests/Resources/Info.plist
       properties:
