@@ -10,6 +10,25 @@ import UIKit
 /// When instantiated it requires a configuration that provides it with the various routes and destinations.
 public struct Router {
   
+  // MARK: - Properties
+  
+  public enum RoutingError {
+    /// ViewController missing from `screensAndDestinations`.
+    case viewControllerNotFound
+    /// Failed to properly cast the viewmodel.
+    case failedToAssignViewModel
+    
+    var message: String {
+      switch self {
+      case .viewControllerNotFound:
+        return "Identifier is not associated to a RoutableViewController. Update your `screensAndDestinations`."
+        
+      case .failedToAssignViewModel:
+        return "Could not assign the viewModel properly to your vc."
+      }
+    }
+  }
+  
   /// The queue on which all navigation is done.
   private let routingQueue = DispatchQueue(label: "routing queue")
   
@@ -21,6 +40,27 @@ public struct Router {
     self.screensAndDestinations = configuration.screensAndDestinations
   }
   
+  // MARK: - Public Methods.
+  
+  /// Starts the router by assigning the passed routable to the passed window and making it key and visible.
+  /// - Parameters:
+  ///   - object: The routable to install as root.
+  ///   - window: The window in which to install the root.
+  ///   - completion: Optional completion to execute after making the window key and visible. Defaults to nil.
+  public func start(routable object: AnyRoutableObject, in window: UIWindow, completion: (()->Void)? = nil) {
+    guard let vc = self.screensAndDestinations[object.screenIdentifier]?.init() else {
+      fatalError(RoutingError.viewControllerNotFound.message)
+    }
+    
+    let assigningViewModelWasSuccessful = vc.assign(model: object.anyViewModel as Any)
+    guard assigningViewModelWasSuccessful else {
+      fatalError(RoutingError.failedToAssignViewModel.message)
+    }
+    
+    #warning("manage navigation controller")
+    window.rootViewController = vc
+    window.makeKeyAndVisible()
+  }
   
   /// Shows the routable elements in the same order they are passed in a synchronous way.
   /// - Parameters:
@@ -37,20 +77,20 @@ public struct Router {
     let semaphore = DispatchSemaphore(value: 1)
     for element in routableElements {
       guard let vc = self.screensAndDestinations[element.screenIdentifier]?.init() else {
-        fatalError("Identifier is not associated to a RoutableViewController. Update your `screensAndDestinations`.")
+        fatalError(RoutingError.viewControllerNotFound.message)
       }
       
       let assigningViewModelWasSuccessful = vc.assign(model: element.anyViewModel as Any)
       guard assigningViewModelWasSuccessful else {
-        fatalError("Could not assign the viewModel properly to your vc.")
+        fatalError(RoutingError.failedToAssignViewModel.message)
       }
 
       self.routingQueue.async {
         semaphore.wait()
         DispatchQueue.main.async {
           switch element.navigationStyle {
-          case .stack:
-            self.push(vc, animated: element.animated, completion: {semaphore.signal()})
+          case .stack(let navigationController):
+            self.push(vc, to: navigationController, animated: element.animated, completion: {semaphore.signal()})
             
           case .modal(style: let style):
             self.present(modal: vc, presentation: style, animated: element.animated, completion: {semaphore.signal()})
@@ -94,22 +134,25 @@ private extension Router {
   /// and presents it as a full screen, unanimated over the parent view controller.
   /// - Parameters:
   ///   - destination: The view controller to display.
-  ///   - parent: The parent view controller displaying the `destination`.
+  ///   - navigationController: The navigation controller to push to. If the top view controller already has a navigation controller, the later's navigation controller will be leveraged. Defaults
   ///   - animated: whether or not to animate the navigation.
   private func push(
     _ destination: UIViewController,
-    to parent: UIViewController = Router.topViewController(),
+    to navigationController: UINavigationController? = nil,
     animated: Bool = true,
     completion: (() -> Void)? = nil
   ) {
-    guard parent.hasNavigationController else {
-      let navVC = UINavigationController(rootViewController: destination)
+    let topVC = Router.topViewController()
+    
+    guard topVC.hasNavigationController else {
+      let navVC = navigationController ?? UINavigationController()
+      navVC.viewControllers = [destination]
       navVC.modalPresentationStyle = .fullScreen
-      parent.present(navVC, animated: animated, completion: completion)
+      topVC.present(navVC, animated: animated, completion: completion)
       return
     }
     
-    parent.navigationController?.pushViewController(destination, animated: animated, completion: completion)
+    topVC.navigationController?.pushViewController(destination, animated: animated, completion: completion)
   }
   
   private func present(

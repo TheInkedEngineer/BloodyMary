@@ -8,6 +8,15 @@ import BloodyMary
 import Foundation
 
 class WhiteViewController: BMViewController<WhiteView>, Routable {
+  
+  func assign(model: Any) -> Bool {
+    guard let model = model as? WhiteViewModel else {
+      return false
+    }
+    self.viewModel = model
+    return true
+  }
+  
   static var screenIdentifier: ScreenIdentifier {
     Screen.white.rawValue
   }
@@ -17,21 +26,21 @@ class WhiteViewController: BMViewController<WhiteView>, Routable {
       let redRoutableObject = RoutableObject(
         screenIdentifier: identifier,
         viewModel: RedViewModel(),
-        navigationStyle: .modal(style: .fullScreen),
+        navigationStyle: .default,
         animated: true
       )
       
       let greenRoutableObject = RoutableObject(
         screenIdentifier: GreenViewController.screenIdentifier,
         viewModel: GreenViewModel(),
-        navigationStyle: .stack,
+        navigationStyle: .stack(),
         animated: false
       )
       
       let yellowRoutableObject = RoutableObject(
         screenIdentifier: YellowViewController.screenIdentifier,
         viewModel: YellowViewModel(),
-        navigationStyle: .stack,
+        navigationStyle: .stack(),
         animated: true
       )
       
