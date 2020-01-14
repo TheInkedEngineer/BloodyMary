@@ -8,6 +8,7 @@ import UIKit
 import XCTest
 
 @testable import BloodyMary
+@testable import BloodyMaryDemo
 
 class InspectableHierarchyUnitTests: XCTestCase {
   

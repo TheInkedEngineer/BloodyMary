@@ -8,9 +8,17 @@ import UIKit
 import XCTest
 
 @testable import BloodyMary
+@testable import BloodyMaryDemo
 
 class RouterUnitTests: XCTestCase {
   
+  enum Screen: ScreenIdentifier {
+    case first
+    case second
+    case third
+    case fourth
+  }
+
   // MARK: First VC
   
   struct FirstViewModel: BMViewModel {}
@@ -21,7 +29,18 @@ class RouterUnitTests: XCTestCase {
     func layout() {}
   }
   class FirstRoutableVC: BMViewController<FirstView>, Routable {
-    static var screenIdentifier: ScreenIdentifier { "first" }
+    func assign(model: Any) -> Bool {
+      guard let model = model as? FirstViewModel else {
+        return false
+      }
+      self.viewModel = model
+      return true
+    }
+    static var screenIdentifier: ScreenIdentifier { Screen.first.rawValue }
+    override func viewDidLoad() {
+      super.viewDidLoad()
+      self.view.backgroundColor = .white
+    }
   }
   
   // MARK: Second VC
@@ -34,7 +53,66 @@ class RouterUnitTests: XCTestCase {
     func layout() {}
   }
   class SecondRoutableVC: BMViewController<SecondView>, Routable {
-    static var screenIdentifier: ScreenIdentifier { "second" }
+    func assign(model: Any) -> Bool {
+      guard let model = model as? SecondViewModel else {
+        return false
+      }
+      self.viewModel = model
+      return true
+    }
+    static var screenIdentifier: ScreenIdentifier { Screen.second.rawValue }
+    override func viewDidLoad() {
+      super.viewDidLoad()
+      self.view.backgroundColor = .red
+    }
+  }
+  
+  // MARK: Third VC
+  
+  struct ThirdViewModel: BMViewModel {}
+  class ThirdView: UIView, BMViewWithViewControllerAndViewModel {
+    func configure() {}
+    func style() {}
+    func update(oldViewModel: ThirdViewModel?) {}
+    func layout() {}
+  }
+  class ThirdRoutableVC: BMViewController<ThirdView>, Routable {
+    func assign(model: Any) -> Bool {
+      guard let model = model as? ThirdViewModel else {
+        return false
+      }
+      self.viewModel = model
+      return true
+    }
+    static var screenIdentifier: ScreenIdentifier { Screen.third.rawValue }
+    override func viewDidLoad() {
+      super.viewDidLoad()
+      self.view.backgroundColor = .green
+    }
+  }
+  
+  // MARK: Fourth VC
+  
+  struct FourthViewModel: BMViewModel {}
+  class FourthView: UIView, BMViewWithViewControllerAndViewModel {
+    func configure() {}
+    func style() {}
+    func update(oldViewModel: FourthViewModel?) {}
+    func layout() {}
+  }
+  class FourthRoutableVC: BMViewController<FourthView>, Routable {
+    func assign(model: Any) -> Bool {
+      guard let model = model as? FourthViewModel else {
+        return false
+      }
+      self.viewModel = model
+      return true
+    }
+    static var screenIdentifier: ScreenIdentifier { Screen.fourth.rawValue }
+    override func viewDidLoad() {
+      super.viewDidLoad()
+      self.view.backgroundColor = .blue
+    }
   }
   
   // MARK: Configuration
@@ -43,7 +121,9 @@ class RouterUnitTests: XCTestCase {
     var screensAndDestinations: [ScreenIdentifier : RoutableViewController.Type] {
       [
         "first" : FirstRoutableVC.self,
-        "second": SecondRoutableVC.self
+        "second": SecondRoutableVC.self,
+        "third" : ThirdRoutableVC.self,
+        "fourth": FourthRoutableVC.self
       ]
     }
   }
@@ -76,7 +156,7 @@ class RouterUnitTests: XCTestCase {
   
   func testRouterStartFailsForWrongVM() {
     #warning("""
-             This test is not working since it is not being executed on the main thread. Forcing the main thread is blocking the execution.
+             This test is not working since it is not being executed on the main thread. Forcing the main thread to blocking the execution.
              Needs further investigaton for the custom function `expectFatalError`.
              """)
 //    expectFatalError (message: Router.RoutingError.failedToAssignViewModel.message) {
@@ -87,5 +167,56 @@ class RouterUnitTests: XCTestCase {
 //        animated: false
 //      ), in: self.window)
 //    }
+  }
+  
+  func testNavigationControllerBaseHierarchy() {
+    let firstVC =  FirstRoutableVC()
+    firstVC.viewModel = FirstViewModel()
+    
+    let secondRoubtaleObject = RoutableObject(screenIdentifier: Screen.second.rawValue, viewModel: SecondViewModel(), navigationStyle: .default, animated: false)
+    let thirdRoubtaleObject = RoutableObject(screenIdentifier: Screen.third.rawValue, viewModel: ThirdViewModel(), navigationStyle: .default, animated: false)
+    let fourthRoubtaleObject = RoutableObject(screenIdentifier: Screen.fourth.rawValue, viewModel: FourthViewModel(), navigationStyle: .default, animated: false)
+    
+    let expectation = self.expectation(description: "Finish Navigation")
+    let nav = UINavigationController(rootViewController: firstVC)
+    
+    UIApplication.shared.keyWindow?.rootViewController = nav
+    
+    self.dependencyManager.router.show(
+      routableElements: [secondRoubtaleObject, thirdRoubtaleObject, fourthRoubtaleObject],
+      completion: {expectation.fulfill()}
+    )
+    
+    waitForExpectations(timeout: 20, handler: nil)
+    
+    let fullStackVC = (UIApplication.shared.keyWindow?.rootViewController as! UINavigationController).viewControllers
+    
+    XCTAssertEqual(nav.hierarchy, fullStackVC)
+  }
+  
+  func testNavigationControllerWithPresentedVC() {
+    let firstVC =  FirstRoutableVC()
+    firstVC.viewModel = FirstViewModel()
+    
+    let secondRoubtaleObject = RoutableObject(screenIdentifier: Screen.second.rawValue, viewModel: SecondViewModel(), navigationStyle: .default, animated: false)
+    let thirdRoubtaleObject = RoutableObject(screenIdentifier: Screen.third.rawValue, viewModel: ThirdViewModel(), navigationStyle: .default, animated: false)
+    let fourthRoubtaleObject = RoutableObject(screenIdentifier: Screen.fourth.rawValue, viewModel: FourthViewModel(), navigationStyle: .modal(), animated: false)
+    
+    let expectation = self.expectation(description: "Finish Navigation")
+    let nav = UINavigationController(rootViewController: firstVC)
+    
+    UIApplication.shared.keyWindow?.rootViewController = nav
+    
+    self.dependencyManager.router.show(
+      routableElements: [secondRoubtaleObject, thirdRoubtaleObject, fourthRoubtaleObject],
+      completion: {expectation.fulfill()}
+    )
+    
+    waitForExpectations(timeout: 20, handler: nil)
+    
+    let fullStackVC = (UIApplication.shared.keyWindow?.rootViewController as! UINavigationController).viewControllers
+      + [UIApplication.shared.keyWindow!.rootViewController!.presentedViewController!]
+    
+    XCTAssertEqual(nav.hierarchy, fullStackVC)
   }
 }

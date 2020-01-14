@@ -94,8 +94,10 @@ public struct Router {
       return
     }
     
-    let semaphore = DispatchSemaphore(value: 1)
+    let navigationGroup = DispatchGroup()
     for element in routableElements {
+      navigationGroup.enter()
+      
       guard let vc = self.screensAndDestinations[element.screenIdentifier]?.init() else {
         fatalError(RoutingError.viewControllerNotFound.message)
       }
@@ -104,28 +106,29 @@ public struct Router {
       guard assigningViewModelWasSuccessful else {
         fatalError(RoutingError.failedToAssignViewModel.message)
       }
-
+      
       self.routingQueue.async {
-        semaphore.wait()
         DispatchQueue.main.async {
           switch element.navigationStyle {
           case .stack(let navigationController):
-            self.push(vc, to: navigationController, animated: element.animated, completion: {semaphore.signal()})
+            self.push(vc, to: navigationController, animated: element.animated, completion: {navigationGroup.leave()})
             
           case .modal(style: let style):
-            self.present(vc, presentation: style, animated: element.animated, completion: {semaphore.signal()})
+            self.present(vc, presentation: style, animated: element.animated, completion: {navigationGroup.leave()})
             
           case .default:
             Router.topViewController().hasNavigationController
-              ? self.push(vc, animated: element.animated, completion: {semaphore.signal()}) :
-              self.present(vc, presentation: .overCurrentContext, animated: element.animated, completion: {semaphore.signal()})
+              ? self.push(vc, animated: element.animated, completion: {navigationGroup.leave()}) :
+              self.present(vc, presentation: .overCurrentContext, animated: element.animated, completion: {navigationGroup.leave()})
           }
         }
       }
     }
-    completion?()
+     
+    navigationGroup.notify(queue: DispatchQueue.main) {
+      completion?()
+    }
   }
-  
   
   /// Hides the top most view controller.
   /// - Parameters:
@@ -174,7 +177,6 @@ private extension Router {
     
     topVC.navigationController?.pushViewController(destination, animated: animated, completion: completion)
   }
-  
   
   /// Presents a `UIViewController` modally.
   /// - Parameters:
