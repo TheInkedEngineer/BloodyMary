@@ -15,7 +15,15 @@ extension UINavigationController {
   ///   - completion: The completion to execute once the view controller is pushed to the stack.
   public func pushViewController( _ viewController: UIViewController, animated: Bool, completion: (() -> Void)?) {
     
-    self.pushViewController(viewController, animated: animated)
+    if Thread.current.isRunningXCTest {
+      // in unit tests we do not need animation.
+      // since it is not actually executed, self.transitionCoordinator is nil,
+      // therefore it can't execute the animation and then the compeltion.
+      self.pushViewController(viewController, animated: false)
+    } else {
+      self.pushViewController(viewController, animated: animated)
+    }
+    
     
     guard animated, let coordinator = self.transitionCoordinator else {
       DispatchQueue.main.async { completion?() }

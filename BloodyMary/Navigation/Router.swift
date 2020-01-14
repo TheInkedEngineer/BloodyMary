@@ -113,12 +113,12 @@ public struct Router {
             self.push(vc, to: navigationController, animated: element.animated, completion: {semaphore.signal()})
             
           case .modal(style: let style):
-            self.present(modal: vc, presentation: style, animated: element.animated, completion: {semaphore.signal()})
+            self.present(vc, presentation: style, animated: element.animated, completion: {semaphore.signal()})
             
           case .default:
             Router.topViewController().hasNavigationController
               ? self.push(vc, animated: element.animated, completion: {semaphore.signal()}) :
-              self.present(modal: vc, presentation: .overCurrentContext, animated: element.animated, completion: {semaphore.signal()})
+              self.present(vc, presentation: .overCurrentContext, animated: element.animated, completion: {semaphore.signal()})
           }
         }
       }
@@ -175,8 +175,16 @@ private extension Router {
     topVC.navigationController?.pushViewController(destination, animated: animated, completion: completion)
   }
   
+  
+  /// Presents a `UIViewController` modally.
+  /// - Parameters:
+  ///   - destination: The viewController to present.
+  ///   - viewController: The view controller presenting.
+  ///   - style: UIModalPresentationStyle to use when presenting.
+  ///   - animated: whether or not to animate the presentation of the viewController. Defaults to `true`.
+  ///   - completion: An optional completion to execute after presenting viewController. Defaults to `nil`.
   private func present(
-    modal destination: UIViewController,
+    _ destination: UIViewController,
     over viewController: UIViewController = Router.topViewController(),
     presentation style: UIModalPresentationStyle,
     animated: Bool = true,
