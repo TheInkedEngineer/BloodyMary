@@ -57,9 +57,29 @@ public struct Router {
       fatalError(RoutingError.failedToAssignViewModel.message)
     }
     
-    #warning("manage navigation controller")
-    window.rootViewController = vc
-    window.makeKeyAndVisible()
+    
+    let installRoot: (_ viewController: UIViewController) -> Void = { controller in
+      window.rootViewController = controller
+      window.makeKeyAndVisible()
+    }
+    
+    let addNavigationControllerThenInstallRoot: (_ navigationController: UINavigationController?) -> Void = { navigationController in
+      let navVC = navigationController ?? UINavigationController()
+      navVC.viewControllers = [vc]
+      installRoot(navVC)
+    }
+    
+    if case NavigationStyle.stack(let navigationController) = object.navigationStyle {
+      addNavigationControllerThenInstallRoot(navigationController)
+      return
+    }
+    
+    if case NavigationStyle.default = object.navigationStyle {
+      addNavigationControllerThenInstallRoot(nil)
+      return
+    }
+    
+    installRoot(vc)
   }
   
   /// Shows the routable elements in the same order they are passed in a synchronous way.
@@ -179,6 +199,7 @@ and therefore it is limited to one screen.
 """)
 internal extension Router {
   /// Iterates over the navigation stack and returns the top view controller of the stack.
+  /// Should be called `ONLY` after keywindow is set and made visible.
   /// - Parameter viewController: The root view controller from which to start iterating.
   static func topViewController(
     root viewController: UIViewController = UIApplication.shared.keyWindow!.rootViewController!
