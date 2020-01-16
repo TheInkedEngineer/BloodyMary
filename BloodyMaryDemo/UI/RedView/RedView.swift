@@ -10,13 +10,34 @@ import UIKit
 struct RedViewModel: BMViewModel {}
 
 class RedView: UIView, BMViewWithViewControllerAndViewModel {
-  func configure() {}
+    let button = UIButton()
+  
+  var didTapButton: (() -> Void)?
+  
+  func configure() {
+    self.addSubview(self.button)
+    self.button.addTarget(self, action: #selector(tappedButton), for: .touchUpInside)
+  }
   
   func style() {
     self.backgroundColor = .red
+    
+    self.button.backgroundColor = .black
+    self.button.setTitleColor(.white, for: .normal)
+    self.button.setTitle("Navigate", for: .normal)
   }
   
   func update(oldViewModel: RedViewModel?) {}
   
-  func layout() {}
+  func layout() {
+    self.button.translatesAutoresizingMaskIntoConstraints = false
+    self.button.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+    self.button.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+    self.button.heightAnchor.constraint(equalToConstant: 50).isActive = true
+    self.button.widthAnchor.constraint(equalToConstant: 200).isActive = true
+  }
+  
+  @objc private func tappedButton() {
+    self.didTapButton?()
+  }
 }

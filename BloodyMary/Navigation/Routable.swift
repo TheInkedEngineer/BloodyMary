@@ -15,6 +15,8 @@ public typealias RoutableViewController = Routable & UIViewController
 /// Closure called when a full navigation is completed.
 public typealias RoutingCompletion = () -> ()
 
+/// A `protocol` that all navigable `ViewControllers` should adhere to.
+/// The `UINavigationController` and the `UITabBarController` should **NOT** adhere to this protocol.
 public protocol Routable: AnyObject {
   /// The identifier associated to the routable element.
   /// ```swift

@@ -26,26 +26,19 @@ class WhiteViewController: BMViewController<WhiteView>, Routable {
       let redRoutableObject = RoutableObject(
         screenIdentifier: identifier,
         viewModel: RedViewModel(),
-        navigationStyle: .default,
+        navigationStyle: .stack(),
         animated: true
       )
       
       let greenRoutableObject = RoutableObject(
         screenIdentifier: GreenViewController.screenIdentifier,
         viewModel: GreenViewModel(),
-        navigationStyle: .stack(),
+        navigationStyle: .modal(),
         animated: false
       )
       
-      let yellowRoutableObject = RoutableObject(
-        screenIdentifier: YellowViewController.screenIdentifier,
-        viewModel: YellowViewModel(),
-        navigationStyle: .stack(),
-        animated: true
-      )
-      
       DependenciesContainer.shared.router.show(
-        routableElements: [redRoutableObject, greenRoutableObject, yellowRoutableObject], completion: nil)
+        routableElements: [redRoutableObject, greenRoutableObject], completion: nil)
     }
   }
 }

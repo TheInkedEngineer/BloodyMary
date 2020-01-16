@@ -36,7 +36,7 @@ public struct Router {
   /// The dictionary containing the routes and their destination view controllers.
   private let screensAndDestinations: [ScreenIdentifier: RoutableViewController.Type]
   
-  /// initiates the router with the proper configuration.
+  /// Initiates a `Router` and returns it with the proper configuration.
   public init(with configuration: RoutingConfigurationProvider) {
     self.screensAndDestinations = configuration.screensAndDestinations
   }
@@ -67,29 +67,41 @@ public struct Router {
     }
     
     let navigationGroup = DispatchGroup()
+    let semaphore = DispatchSemaphore(value: 1)
+    
     for element in routableElements {
       navigationGroup.enter()
-      
       let vc = configureVC(of: element)
       
       self.routingQueue.async {
+        semaphore.wait()
         DispatchQueue.main.async {
           switch element.navigationStyle {
-          case .stack(let navigationController):
-            self.push(vc, to: navigationController, animated: element.animated, completion: {navigationGroup.leave()})
+          case .stack(let navigationController, let presentationStyle):
+            navigationController?.modalPresentationStyle = presentationStyle
+            self.push(
+              vc,
+              to: navigationController,
+              animated: element.animated,
+              completion: {
+                navigationGroup.leave();
+                semaphore.signal()
+            })
             
           case .modal(style: let style):
-            self.present(vc, presentation: style, animated: element.animated, completion: {navigationGroup.leave()})
-            
-          case .default:
-            Router.topViewController().hasNavigationController
-              ? self.push(vc, animated: element.animated, completion: {navigationGroup.leave()}) :
-              self.present(vc, presentation: .overCurrentContext, animated: element.animated, completion: {navigationGroup.leave()})
+            self.present(
+              vc,
+              presentation: style,
+              animated: element.animated,
+              completion: {
+                navigationGroup.leave();
+                semaphore.signal()
+            })
           }
         }
       }
     }
-     
+    
     navigationGroup.notify(queue: DispatchQueue.main) {
       completion?()
     }
@@ -134,7 +146,7 @@ private extension Router {
     guard topVC.hasNavigationController else {
       let navVC = navigationController ?? UINavigationController()
       navVC.viewControllers = [destination]
-      navVC.modalPresentationStyle = .fullScreen
+      navVC.modalPresentationStyle = destination.modalPresentationStyle
       topVC.present(navVC, animated: animated, completion: completion)
       return
     }
