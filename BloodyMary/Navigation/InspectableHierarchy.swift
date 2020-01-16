@@ -16,6 +16,7 @@ public protocol InspectableHierarchy: AnyObject {
 
 /// A protocol that only `UIViewController` should conform to to returnm the `presentedViewController` if present.
 public protocol InspectablePresentedViewController: AnyObject {
+  /// The next view controller in the hierarchy.
   var nextViewController: UIViewController? { get }
 }
 

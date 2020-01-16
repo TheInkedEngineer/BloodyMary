@@ -18,6 +18,7 @@ public struct Router {
     /// Failed to properly cast the viewmodel.
     case failedToAssignViewModel
     
+    /// The message to display associated to the error.
     var message: String {
       switch self {
       case .viewControllerNotFound:
@@ -42,44 +43,15 @@ public struct Router {
   
   // MARK: - Public Methods.
   
-  /// Starts the router by assigning the passed routable to the passed window and making it key and visible.
+  /// Sets a new `rootViewController` for the `UIWindow`.
   /// - Parameters:
-  ///   - object: The routable to install as root.
+  ///   - routable: The routable object to install as root.
   ///   - window: The window in which to install the root.
   ///   - completion: Optional completion to execute after making the window key and visible. Defaults to nil.
-  public func start(routable object: AnyRoutableObject, in window: UIWindow, completion: (()->Void)? = nil) {
-    guard let vc = self.screensAndDestinations[object.screenIdentifier]?.init() else {
-      fatalError(RoutingError.viewControllerNotFound.message)
-    }
-    
-    let assigningViewModelWasSuccessful = vc.assign(model: object.anyViewModel as Any)
-    guard assigningViewModelWasSuccessful else {
-      fatalError(RoutingError.failedToAssignViewModel.message)
-    }
-    
-    
-    let installRoot: (_ viewController: UIViewController) -> Void = { controller in
-      window.rootViewController = controller
-      window.makeKeyAndVisible()
-    }
-    
-    let addNavigationControllerThenInstallRoot: (_ navigationController: UINavigationController?) -> Void = { navigationController in
-      let navVC = navigationController ?? UINavigationController()
-      navVC.viewControllers = [vc]
-      installRoot(navVC)
-    }
-    
-    if case NavigationStyle.stack(let navigationController) = object.navigationStyle {
-      addNavigationControllerThenInstallRoot(navigationController)
-      return
-    }
-    
-    if case NavigationStyle.default = object.navigationStyle {
-      addNavigationControllerThenInstallRoot(nil)
-      return
-    }
-    
-    installRoot(vc)
+  public func installRoot(using controller: UIViewController, in window: UIWindow, completion: (()->Void)? = nil) {
+    window.rootViewController = controller
+    window.makeKeyAndVisible()
+    completion?()
   }
   
   /// Shows the routable elements in the same order they are passed in a synchronous way.
@@ -98,14 +70,7 @@ public struct Router {
     for element in routableElements {
       navigationGroup.enter()
       
-      guard let vc = self.screensAndDestinations[element.screenIdentifier]?.init() else {
-        fatalError(RoutingError.viewControllerNotFound.message)
-      }
-      
-      let assigningViewModelWasSuccessful = vc.assign(model: element.anyViewModel as Any)
-      guard assigningViewModelWasSuccessful else {
-        fatalError(RoutingError.failedToAssignViewModel.message)
-      }
+      let vc = configureVC(of: element)
       
       self.routingQueue.async {
         DispatchQueue.main.async {
@@ -151,7 +116,6 @@ public struct Router {
 // MARK: - Navigation Functions
 
 private extension Router {
-  
   /// Shows a `UIViewController` inside the parent's `UINavigationController` if present,
   /// otherwise it creates a `UINavigationController`, sets the destination as a `rootViewController`
   /// and presents it as a full screen, unanimated over the parent view controller.
@@ -194,6 +158,21 @@ private extension Router {
   ) {
     destination.modalPresentationStyle = style
     viewController.present(destination, animated: animated, completion: completion)
+  }
+  
+  /// Initializes the view controller from the passed object and assigns its view model.
+  /// - Parameter object: The `RoutableObject` to configure.
+  private func configureVC(of object: AnyRoutableObject) -> UIViewController {
+    guard let vc = self.screensAndDestinations[object.screenIdentifier]?.init() else {
+      fatalError(RoutingError.viewControllerNotFound.message)
+    }
+    
+    let assigningViewModelWasSuccessful = vc.assign(model: object.anyViewModel as Any)
+    guard assigningViewModelWasSuccessful else {
+      fatalError(RoutingError.failedToAssignViewModel.message)
+    }
+    
+    return vc
   }
 }
 
@@ -244,7 +223,6 @@ private extension UIViewController {
 }
 
 private extension UIApplication {
-  
   /// Checks and returns the full hierarchy of all visible UIViewControllers in the stack.
   var allViewControllers: [UIViewController] {
     
