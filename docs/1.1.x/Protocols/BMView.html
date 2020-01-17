@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>BMView Protocol Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Protocol/BMView" class="dashAnchor"></a>
+    <a title="BMView Protocol Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">BloodyMary 1.1.0 Docs</a> (100% documented)</p>
+        <p class="header-right"><a href="https://github.com/TheInkedEngineer/"><img src="../img/gh.png"/>View on GitHub</a></p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">BloodyMary Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        BMView Protocol Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/BMContainerView.html">BMContainerView</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/BMViewController.html">BMViewController</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/NavigationStyle.html">NavigationStyle</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/UINavigationController.html">UINavigationController</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/UITabBarController.html">UITabBarController</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/UIViewController.html">UIViewController</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Functions.html">Functions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:10BloodyMary10fatalError_4file4lines5NeverOSSyXK_s12StaticStringVSutF">fatalError(_:file:line:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:10BloodyMary11unreachables5NeverOyF">unreachable()</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/AnyRoutableObject.html">AnyRoutableObject</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/BMView.html">BMView</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols.html#/s:10BloodyMary11BMViewModelP">BMViewModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/BMViewWithViewControllerAndViewModel.html">BMViewWithViewControllerAndViewModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/BMViewWithViewModel.html">BMViewWithViewModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/InspectableHierarchy.html">InspectableHierarchy</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/InspectablePresentedViewController.html">InspectablePresentedViewController</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/Routable.html">Routable</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/RoutingConfigurationProvider.html">RoutingConfigurationProvider</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/FatalErrorUtil.html">FatalErrorUtil</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/RoutableObject.html">RoutableObject</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Router.html">Router</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Router/RoutingError.html">– RoutingError</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Typealiases.html">Type Aliases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:10BloodyMary22RoutableViewControllera">RoutableViewController</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:10BloodyMary5Routea">Route</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:10BloodyMary17RoutingCompletiona">RoutingCompletion</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:10BloodyMary16ScreenIdentifiera">ScreenIdentifier</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>BMView</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">BMView</span> <span class="p">:</span> <span class="kt">AnyObject</span></code></pre>
+
+                </div>
+              </div>
+            <p>A protocol that views should conform to.</p>
+<h2 id='its-main-goal-is-to-help-structure-the-code-in-a-more-clean-organized-way' class='heading'>Its main goal is to help structure the code in a more clean, organized way.</h2>
+<h2 id='example' class='heading'>Example</h2>
+<pre class="highlight swift"><code><span class="c1">/// An image based checkbox.</span>
+<span class="kd">open</span> <span class="kd">class</span> <span class="kt">SKCheckbox</span><span class="p">:</span> <span class="kt">UIControl</span><span class="p">,</span> <span class="kt">BMView</span> <span class="p">{</span>
+
+  <span class="c1">// MARK: - Properties</span>
+
+  <span class="c1">/// The currently displayed checkbox Image.</span>
+  <span class="kd">private</span> <span class="k">var</span> <span class="nv">checkboxImage</span> <span class="o">=</span> <span class="kt">UIImageView</span><span class="p">()</span>
+
+  <span class="c1">/// Overriding the original method to update the icon based on state.</span>
+  <span class="kd">open</span> <span class="k">override</span> <span class="k">var</span> <span class="nv">isEnabled</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span>
+    <span class="k">didSet</span> <span class="p">{</span> <span class="k">self</span><span class="o">.</span><span class="nf">update</span><span class="p">()</span> <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="c1">// MARK: - Interactions</span>
+
+  <span class="kd">public</span> <span class="k">var</span> <span class="nv">valueDidChange</span><span class="p">:</span> <span class="p">((</span><span class="n">_</span> <span class="nv">checkbox</span><span class="p">:</span> <span class="kt">SKCheckbox</span><span class="p">,</span> <span class="n">_</span> <span class="nv">oldValue</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)?</span>
+
+  <span class="c1">// MARK: - init</span>
+
+  <span class="c1">/// `init` via code.</span>
+  <span class="kd">public</span> <span class="k">override</span> <span class="nf">init</span><span class="p">(</span><span class="nv">frame</span><span class="p">:</span> <span class="kt">CGRect</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">super</span><span class="o">.</span><span class="nf">init</span><span class="p">(</span><span class="nv">frame</span><span class="p">:</span> <span class="n">frame</span><span class="p">)</span>
+    <span class="k">self</span><span class="o">.</span><span class="nf">configure</span><span class="p">()</span>
+    <span class="k">self</span><span class="o">.</span><span class="nf">update</span><span class="p">()</span>
+    <span class="k">self</span><span class="o">.</span><span class="nf">layout</span><span class="p">()</span>
+  <span class="p">}</span>
+
+  <span class="c1">/// `init` via IB.</span>
+  <span class="kd">public</span> <span class="kd">required</span> <span class="nf">init</span><span class="p">?(</span><span class="n">coder</span> <span class="nv">aDecoder</span><span class="p">:</span> <span class="kt">NSCoder</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">super</span><span class="o">.</span><span class="nf">init</span><span class="p">(</span><span class="nv">coder</span><span class="p">:</span> <span class="n">aDecoder</span><span class="p">)</span>
+    <span class="k">self</span><span class="o">.</span><span class="nf">configure</span><span class="p">()</span>
+    <span class="k">self</span><span class="o">.</span><span class="nf">update</span><span class="p">()</span>
+    <span class="k">self</span><span class="o">.</span><span class="nf">layout</span><span class="p">()</span>
+  <span class="p">}</span>
+
+  <span class="c1">// MARK: - CSUL</span>
+
+  <span class="kd">public</span> <span class="kd">func</span> <span class="nf">configure</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">self</span><span class="o">.</span><span class="nf">addSubview</span><span class="p">(</span><span class="k">self</span><span class="o">.</span><span class="n">checkboxImage</span><span class="p">)</span>
+  <span class="p">}</span>
+
+  <span class="kd">public</span> <span class="kd">func</span> <span class="nf">style</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// style the default looks of the view and its subviews.</span>
+  <span class="p">}</span>
+
+  <span class="kd">public</span> <span class="kd">func</span> <span class="nf">update</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// update UI when isEnabled changes status, among other things.</span>
+  <span class="p">}</span>
+
+  <span class="kd">public</span> <span class="kd">func</span> <span class="nf">layout</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// layout the `checkboxImage` and other potential subviews.</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>The view exposes <strong>properties</strong> and <strong>interactions</strong> to the outside world.
+The <strong>properties</strong> deal with the state of the element, whereas the <strong>interactions</strong> are callbacks to interact with changes inside the element.
+The lifecycle of the view is composed of <code>configure</code>, <code>style</code>, <code>update and</code>layout`.</p>
+<h2 id='configure' class='heading'>Configure</h2>
+
+<p>Executed once when the view is instatiated. It deals with configuring the view.
+For instance, a typical usecase would be to add subviews, or setup interactions.</p>
+<pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">configure</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">self</span><span class="o">.</span><span class="nf">addSubiew</span><span class="p">(</span><span class="n">sel</span><span class="o">.</span><span class="n">checkboxImage</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre>
+<h2 id='style' class='heading'>Style</h2>
+
+<p>Executed once when the view is instatiated. It deals with applaying the basic static styling to the view.
+In other words element properties that are independent of the state of the element are applied here.
+If the background of the element always has the same color, the background color is set here.</p>
+<pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">style</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">self</span><span class="o">.</span><span class="n">backgroundColor</span> <span class="o">=</span> <span class="o">.</span><span class="n">white</span>
+<span class="p">}</span>
+</code></pre>
+<h2 id='update' class='heading'>Update</h2>
+
+<p>Update is not directly called when the object is instantiated but rather when a state related value changes its state.
+Inside of the update, changes should be made to the UI to reflect the new state.</p>
+<pre class="highlight swift"><code>  <span class="kd">open</span> <span class="k">override</span> <span class="k">var</span> <span class="nv">isEnabled</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span>
+    <span class="k">didSet</span> <span class="p">{</span> <span class="k">self</span><span class="o">.</span><span class="nf">update</span><span class="p">()</span> <span class="p">}</span>
+  <span class="p">}</span>
+</code></pre>
+<h2 id='layout' class='heading'>Layout</h2>
+
+<p>Excecuted once when the view is instatiated. It layouts the subviews as intended.</p>
+<pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">layout</span><span class="p">()</span> <span class="p">{</span>
+ <span class="k">self</span><span class="o">.</span><span class="n">checkboxImage</span><span class="o">.</span><span class="n">frame</span> <span class="o">=</span> <span class="k">self</span><span class="o">.</span><span class="n">bounds</span>
+</code></pre>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10BloodyMary6BMViewP9configureyyF"></a>
+                    <a name="//apple_ref/swift/Method/configure()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10BloodyMary6BMViewP9configureyyF">configure()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The view is configured at this level.
+The configuration should be called once inside the <code>init</code>.
+Things like adding subview, and targets to buttons are done here.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">configure</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/TheInkedEngineer/blob/master/BloodyMary/Core/BMView.swift#L110">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10BloodyMary6BMViewP5styleyyF"></a>
+                    <a name="//apple_ref/swift/Method/style()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10BloodyMary6BMViewP5styleyyF">style()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The styling of the view&rsquo;s static elements is done at this level.
+The styling should be called once inside the <code>init()</code>, after the <code><a href="../Protocols/BMView.html#/s:10BloodyMary6BMViewP9configureyyF">configure()</a></code> phase.
+Styling elements that depend on the <code>state</code> of the view should go into update.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">style</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/TheInkedEngineer/blob/master/BloodyMary/Core/BMView.swift#L115">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10BloodyMary6BMViewP6updateyyF"></a>
+                    <a name="//apple_ref/swift/Method/update()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10BloodyMary6BMViewP6updateyyF">update()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p><code>update()</code> should be called everytime the <code>state</code> of the view changes.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">update</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/TheInkedEngineer/blob/master/BloodyMary/Core/BMView.swift#L118">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10BloodyMary6BMViewP6layoutyyF"></a>
+                    <a name="//apple_ref/swift/Method/layout()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10BloodyMary6BMViewP6layoutyyF">layout()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>During this phase the layouting of the subviews takes place.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">layout</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/TheInkedEngineer/blob/master/BloodyMary/Core/BMView.swift#L121">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>TheInkedEngineer</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.1</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

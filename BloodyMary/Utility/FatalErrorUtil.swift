@@ -6,7 +6,7 @@
 
 import Foundation
 
-// overrides Swift global `fatalError`
+/// overrides Swift global `fatalError`, used for unit tests.
 public func fatalError(_ message: @autoclosure () -> String = String(), file: StaticString = #file, line: UInt = #line) -> Never {
   FatalErrorUtil.fatalErrorClosure(message(), file, line)
 }

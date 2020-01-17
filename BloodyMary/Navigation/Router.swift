@@ -12,6 +12,7 @@ public struct Router {
   
   // MARK: - Properties
   
+  /// Possibile errors while performing the routing operations.
   public enum RoutingError {
     /// ViewController missing from `screensAndDestinations`.
     case viewControllerNotFound
