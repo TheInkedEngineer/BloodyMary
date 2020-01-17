@@ -14,5 +14,5 @@ public enum NavigationStyle {
   /// on the top most view controller in the hierarchy, the value passed is discarded.
   case stack(_ navigationController: UINavigationController? = nil, style: UIModalPresentationStyle = .overCurrentContext)
   /// Presents the view controller in a modal way. `UIModalPresentationStyle` defaults to `.overCurrentContext`.
-  case modal(style: UIModalPresentationStyle = .overCurrentContext)
+  case modal(style: UIModalPresentationStyle = .fullScreen)
 }

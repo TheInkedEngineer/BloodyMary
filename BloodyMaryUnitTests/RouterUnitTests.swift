@@ -143,39 +143,13 @@ class RouterUnitTests: XCTestCase {
     self.dependencyManager = DependencyManager()
   }
   
-  func testRouterStartFailsForMissingVC() {
-    expectFatalError (message: Router.RoutingError.viewControllerNotFound.message) {
-      self.dependencyManager.router.start(routable: RoutableObject(
-        screenIdentifier: "First",
-        viewModel: FirstViewModel(),
-        navigationStyle: .default,
-        animated: false
-      ), in: self.window)
-    }
-  }
-  
-  func testRouterStartFailsForWrongVM() {
-    #warning("""
-             This test is not working since it is not being executed on the main thread. Forcing the main thread to blocking the execution.
-             Needs further investigaton for the custom function `expectFatalError`.
-             """)
-//    expectFatalError (message: Router.RoutingError.failedToAssignViewModel.message) {
-//      self.dependencyManager.router.start(routable: RoutableObject(
-//        screenIdentifier: "first",
-//        viewModel: SecondViewModel(),
-//        navigationStyle: .default,
-//        animated: false
-//      ), in: self.window)
-//    }
-  }
-  
   func testNavigationControllerBaseHierarchy() {
     let firstVC =  FirstRoutableVC()
     firstVC.viewModel = FirstViewModel()
     
-    let secondRoubtaleObject = RoutableObject(screenIdentifier: Screen.second.rawValue, viewModel: SecondViewModel(), navigationStyle: .default, animated: false)
-    let thirdRoubtaleObject = RoutableObject(screenIdentifier: Screen.third.rawValue, viewModel: ThirdViewModel(), navigationStyle: .default, animated: false)
-    let fourthRoubtaleObject = RoutableObject(screenIdentifier: Screen.fourth.rawValue, viewModel: FourthViewModel(), navigationStyle: .default, animated: false)
+    let secondRoubtaleObject = RoutableObject(screenIdentifier: Screen.second.rawValue, viewModel: SecondViewModel(), navigationStyle: .stack(), animated: false)
+    let thirdRoubtaleObject = RoutableObject(screenIdentifier: Screen.third.rawValue, viewModel: ThirdViewModel(), navigationStyle: .stack(), animated: false)
+    let fourthRoubtaleObject = RoutableObject(screenIdentifier: Screen.fourth.rawValue, viewModel: FourthViewModel(), navigationStyle: .stack(), animated: false)
     
     let expectation = self.expectation(description: "Finish Navigation")
     let nav = UINavigationController(rootViewController: firstVC)
@@ -198,8 +172,8 @@ class RouterUnitTests: XCTestCase {
     let firstVC =  FirstRoutableVC()
     firstVC.viewModel = FirstViewModel()
     
-    let secondRoubtaleObject = RoutableObject(screenIdentifier: Screen.second.rawValue, viewModel: SecondViewModel(), navigationStyle: .default, animated: false)
-    let thirdRoubtaleObject = RoutableObject(screenIdentifier: Screen.third.rawValue, viewModel: ThirdViewModel(), navigationStyle: .default, animated: false)
+    let secondRoubtaleObject = RoutableObject(screenIdentifier: Screen.second.rawValue, viewModel: SecondViewModel(), navigationStyle: .stack(), animated: false)
+    let thirdRoubtaleObject = RoutableObject(screenIdentifier: Screen.third.rawValue, viewModel: ThirdViewModel(), navigationStyle: .stack(), animated: false)
     let fourthRoubtaleObject = RoutableObject(screenIdentifier: Screen.fourth.rawValue, viewModel: FourthViewModel(), navigationStyle: .modal(), animated: false)
     
     let expectation = self.expectation(description: "Finish Navigation")
