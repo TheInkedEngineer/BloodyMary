@@ -24,7 +24,6 @@ extension UINavigationController {
       self.pushViewController(viewController, animated: animated)
     }
     
-    
     guard animated, let coordinator = self.transitionCoordinator else {
       DispatchQueue.main.async { completion?() }
       return

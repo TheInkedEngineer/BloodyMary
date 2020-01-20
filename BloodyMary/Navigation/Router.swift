@@ -42,17 +42,15 @@ public struct Router {
     self.screensAndDestinations = configuration.screensAndDestinations
   }
   
-  // MARK: - Public Methods.
+  // MARK: - Public Methods
   
   /// Sets a new `rootViewController` for the `UIWindow`.
   /// - Parameters:
   ///   - routable: The routable object to install as root.
   ///   - window: The window in which to install the root.
-  ///   - completion: Optional completion to execute after making the window key and visible. Defaults to nil.
-  public func installRoot(using controller: UIViewController, in window: UIWindow, completion: (()->Void)? = nil) {
+  public func installRoot(using controller: UIViewController, in window: UIWindow) {
     window.rootViewController = controller
     window.makeKeyAndVisible()
-    completion?()
   }
   
   /// Shows the routable elements in the same order they are passed in a synchronous way.

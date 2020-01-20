@@ -14,7 +14,7 @@ public protocol InspectableHierarchy: AnyObject {
   var hierarchy: [UIViewController] { get }
 }
 
-/// A protocol that only `UIViewController` should conform to to returnm the `presentedViewController` if present.
+/// A protocol that only `UIViewController` should conform to in order to return the `presentedViewController` if present.
 public protocol InspectablePresentedViewController: AnyObject {
   /// The next view controller in the hierarchy.
   var nextViewController: UIViewController? { get }
@@ -36,17 +36,7 @@ extension UINavigationController: InspectableHierarchy {
 /// The`UITabBarController` consists of the `selectedViewController` and an optional  `presentedViewController`.
 extension UITabBarController: InspectableHierarchy {
   public var hierarchy: [UIViewController] {
-    var controllers: [UIViewController] = []
-    
-    if let selectedVC = self.selectedViewController {
-      controllers.append(selectedVC)
-    }
-    
-    if let presentedVC = self.presentedViewController {
-      controllers.append(presentedVC)
-    }
-
-    return controllers
+    [selectedViewController, presentedViewController].compactMap { $0 }
   }
 }
 
