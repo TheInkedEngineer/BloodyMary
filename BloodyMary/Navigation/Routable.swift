@@ -4,7 +4,7 @@
 //  Copyright © TheInkedEngineer. All rights reserved.
 // 
 
-import Foundation
+import UIKit
 
 /// The Identifier to use for a `Routable`.
 public typealias ScreenIdentifier = String
