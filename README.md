@@ -14,7 +14,7 @@
 
 Currently the stable version is `1.0.1` that lacks the navigation system.
 
-The `1.1-beta.1` is the version containing the navigation system, currently being tested on different `WiseEmotions` libraries and `Telepass` iOS app.
+The `1.1.0-beta.1` is the version containing the navigation system, currently being tested on different `WiseEmotions` libraries and `Telepass` iOS app.
 
 ### RoadMap
 
