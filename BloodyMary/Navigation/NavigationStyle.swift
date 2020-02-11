@@ -12,7 +12,13 @@ public enum NavigationStyle {
   /// sets the view controller as rootViewController of that navigation controller and presents it as a `.fullScreen` over the stack.
   /// An optional custom `UINavigationController` can be passed. However if a `UINavigationController` is already present
   /// on the top most view controller in the hierarchy, the value passed is discarded.
-  case stack(_ navigationController: UINavigationController? = nil, style: UIModalPresentationStyle = .overCurrentContext)
+  case stack(
+    style: UIModalPresentationStyle = .overCurrentContext,
+    navigationController: UINavigationController? = nil
+  )
   /// Presents the view controller in a modal way. `UIModalPresentationStyle` defaults to `.fullScreen`.
-  case modal(style: UIModalPresentationStyle = .fullScreen)
+  case modal(
+    style: UIModalPresentationStyle = .fullScreen,
+    navigationController: UINavigationController? = nil
+  )
 }

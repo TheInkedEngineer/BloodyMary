@@ -76,7 +76,7 @@ public struct Router {
         semaphore.wait()
         DispatchQueue.main.async {
           switch element.navigationStyle {
-          case .stack(let navigationController, let presentationStyle):
+          case .stack(let presentationStyle, let navigationController):
             navigationController?.modalPresentationStyle = presentationStyle
             self.push(
               vc,
@@ -87,9 +87,10 @@ public struct Router {
                 semaphore.signal()
             })
             
-          case .modal(style: let style):
+          case .modal(let style, let navigationController):
+            let toPresent = navigationController == nil ? vc : UINavigationController(rootViewController: vc)
             self.present(
-              vc,
+              toPresent,
               presentation: style,
               animated: element.animated,
               completion: {
