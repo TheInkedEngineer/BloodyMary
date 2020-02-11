@@ -13,6 +13,8 @@ Pod::Spec.new do |s|
   
   s.ios.source_files = [
     'BloodyMary/Core/**/*.swift',
+    'BloodyMary/Navigation/*.swift',
+    'BloodyMary/Utility/*.swift',
     'BloodyMary/Resources/BloodyMary.h',
   ]
 
