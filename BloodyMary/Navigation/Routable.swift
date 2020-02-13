@@ -45,10 +45,3 @@ public protocol Routable: AnyObject {
   @discardableResult
   func assign(model: Any) -> Bool
 }
-
-// Default implementation to assure the user implements this function.
-public extension Routable {
-  func assign(model: Any) -> Bool {
-    fatalError("You did not implement \(#function).")
-  }
-}
