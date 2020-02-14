@@ -139,3 +139,12 @@ public class BMContainerView: UIView {
     }
   }
 }
+
+// MARK: - Base implementation for Routable's `assign`
+
+extension BMViewController {
+  public func assign(model: Any) -> Bool {
+    viewModel = model as? View.VM
+    return viewModel != nil
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "warnings": [
+    {
+      "file": "/Users/firas.safa/Code/BloodyMary/BloodyMary/Navigation/Router.swift",
+      "line": 15,
+      "symbol": "Router.RoutingError",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/firas.safa/Code/BloodyMary/BloodyMary/Utility/FatalErrorUtil.swift",
+      "line": 10,
+      "symbol": "fatalError(_:file:line:)",
+      "symbol_kind": "source.lang.swift.decl.function.free",
+      "warning": "undocumented"
+    }
+  ],
+  "source_directory": "/Users/firas.safa/Code/BloodyMary"
+}
