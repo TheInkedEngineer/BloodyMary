@@ -12,9 +12,7 @@
 
 `BloodyMary`'s  navigation system aims to help you write the least code needed to get the most out of your app. You provide the SDK with the routes identifiers and their respective view controllers, and BloodyMary does the rest. From instantiating the correct VC to properly pushing it or presenting it etc..
 
-Currently the stable version is `1.0.1` that lacks the navigation system.
-
-The `1.1.0-beta.x` is the version containing the navigation system, currently being tested on different `WiseEmotions` libraries and `Telepass` iOS app.
+The `1.1.0` is the version containing the navigation system, currently being tested on different `WiseEmotions` libraries and `Telepass` iOS app.
 
 ### RoadMap
 
