@@ -89,11 +89,12 @@ public struct Router {
                 self.semaphore.signal()
             })
             
-          case .modal(let style, let navigationController):
+          case .modal(let presentationStyle, let navigationController, let transitionStyle):
             let toPresent = navigationController == nil ? vc : UINavigationController(rootViewController: vc)
             self.present(
               toPresent,
-              presentation: style,
+              presentationStyle: presentationStyle,
+              transitionStyle: transitionStyle,
               animated: element.animated,
               completion: {
                 navigationGroup.leave()
