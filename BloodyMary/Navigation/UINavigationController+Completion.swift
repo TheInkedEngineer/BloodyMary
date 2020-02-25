@@ -13,7 +13,7 @@ extension UINavigationController {
   ///   - viewController: The view controller to push onto the stack. This object cannot be a tab bar controller. If the view controller is already on the navigation stack, this method throws an exception.
   ///   - animated: Specify true to animate the transition or false if you do not want the transition to be animated. You might specify false if you are setting up the navigation controller at launch time.
   ///   - completion: The completion to execute once the view controller is pushed to the stack.
-  public func pushViewController( _ viewController: UIViewController, animated: Bool, completion: (() -> Void)?) {
+  public func pushViewController( _ viewController: UIViewController, animated: Bool, completion: Router.Completion?) {
     
     if Thread.current.isRunningXCTest {
       // in unit tests we do not need animation.
@@ -36,7 +36,7 @@ extension UINavigationController {
   /// - Parameters:
   ///   - animated: Set this value to true to animate the transition. Pass false if you are setting up a navigation controller before its view is displayed.
   ///   - completion: The completion to execute once the view controller is poped.
-  func popViewController( animated: Bool, completion: (() -> Void)?) {
+  func popViewController(animated: Bool, completion: Router.Completion?) {
     
     self.popViewController(animated: animated)
     

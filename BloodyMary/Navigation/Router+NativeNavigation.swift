@@ -20,7 +20,7 @@ internal extension Router {
     _ destination: UIViewController,
     to navigationController: UINavigationController? = nil,
     animated: Bool = true,
-    completion: (() -> Void)? = nil
+    completion: Router.Completion? = nil
   ) {
     let topVC = Router.topViewController()
     
@@ -47,7 +47,7 @@ internal extension Router {
     over viewController: UIViewController = Router.topViewController(),
     presentation style: UIModalPresentationStyle,
     animated: Bool = true,
-    completion: (() -> Void)? = nil
+    completion: Router.Completion? = nil
   ) {
     destination.modalPresentationStyle = style
     viewController.present(destination, animated: animated, completion: completion)

@@ -10,6 +10,9 @@ import UIKit
 /// When instantiated it requires a configuration that provides it with the various routes and destinations.
 public struct Router {
   
+  /// A routing completion typealias..
+  public typealias Completion = () -> Void
+  
   // MARK: - Properties
   
   /// Possibile errors while performing the routing operations.
