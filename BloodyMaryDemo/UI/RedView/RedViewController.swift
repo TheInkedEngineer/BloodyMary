@@ -16,7 +16,7 @@ class RedViewController: BMViewController<RedView>, Routable {
     super.setupInteractions()
     
     self.rootView.didTapButton = {
-      DependenciesContainer.shared.router.hide()
+      DependenciesContainer.shared.router.hideTopViewController()
     }
   }
 }

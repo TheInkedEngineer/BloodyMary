@@ -39,6 +39,8 @@ public struct Router {
   
   /// The dictionary containing the routes and their destination view controllers.
   internal let screensAndDestinations: [ScreenIdentifier: RoutableViewController.Type]
+  /// The semaphore used to synchronise the various show and hide.
+  internal let semaphore = DispatchSemaphore(value: 1)
   
   /// Initiates a `Router` and returns it with the proper configuration.
   public init(with configuration: RoutingConfigurationProvider) {
@@ -64,19 +66,16 @@ public struct Router {
     routableElements: [AnyRoutableObject],
     completion: RoutingCompletion? = nil
   ) {
-    if routableElements.isEmpty {
-      return
-    }
+    if routableElements.isEmpty {return }
     
     let navigationGroup = DispatchGroup()
-    let semaphore = DispatchSemaphore(value: 1)
     
     for element in routableElements {
       navigationGroup.enter()
       let vc = configureVC(of: element)
       
       self.routingQueue.async {
-        semaphore.wait()
+        self.semaphore.wait()
         DispatchQueue.main.async {
           switch element.navigationStyle {
           case .stack(let presentationStyle, let navigationController):
@@ -86,8 +85,8 @@ public struct Router {
               to: navigationController,
               animated: element.animated,
               completion: {
-                navigationGroup.leave();
-                semaphore.signal()
+                navigationGroup.leave()
+                self.semaphore.signal()
             })
             
           case .modal(let style, let navigationController):
@@ -97,14 +96,13 @@ public struct Router {
               presentation: style,
               animated: element.animated,
               completion: {
-                navigationGroup.leave();
-                semaphore.signal()
+                navigationGroup.leave()
+                self.semaphore.signal()
             })
           }
         }
       }
     }
-    
     navigationGroup.notify(queue: DispatchQueue.main) {
       completion?()
     }
@@ -114,15 +112,26 @@ public struct Router {
   /// - Parameters:
   ///   - animated: hiding is animated or not. Defaults to `true`.
   ///   - completion: completion to execute after hiding is completed. Defaults to `nil`
-  public func hide(animated: Bool = true, completion: RoutingCompletion? = nil) {
+  public func hideTopViewController(animated: Bool = true, completion: RoutingCompletion? = nil) {
     self.routingQueue.async {
+      self.semaphore.wait()
       DispatchQueue.main.async {
         let topViewController = Router.topViewController()
         guard let stackViewControllers = topViewController.navigationController?.viewControllers, stackViewControllers.count > 1 else {
-          topViewController.dismiss(animated: animated, completion: completion)
+          topViewController.dismiss(
+            animated: animated,
+            completion: {
+              self.semaphore.signal()
+              completion?()
+          })
           return
         }
-        topViewController.navigationController?.popViewController(animated: animated, completion: completion)
+        topViewController.navigationController?.popViewController(
+          animated: animated,
+          completion: {
+            self.semaphore.signal()
+            completion?()
+        })
       }
     }
   }
