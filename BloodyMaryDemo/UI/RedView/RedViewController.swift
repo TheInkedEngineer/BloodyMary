@@ -8,15 +8,6 @@ import BloodyMary
 import Foundation
 
 class RedViewController: BMViewController<RedView>, Routable {
-  
-  func assign(model: Any) -> Bool {
-    guard let model = model as? RedViewModel else {
-      return false
-    }
-    self.viewModel = model
-    return true
-  }
-  
   static var screenIdentifier: ScreenIdentifier {
     Screen.red.rawValue
   }
@@ -25,7 +16,7 @@ class RedViewController: BMViewController<RedView>, Routable {
     super.setupInteractions()
     
     self.rootView.didTapButton = {
-      DependenciesContainer.shared.router.hide()
+      DependenciesContainer.shared.router.hideTopViewController()
     }
   }
 }
