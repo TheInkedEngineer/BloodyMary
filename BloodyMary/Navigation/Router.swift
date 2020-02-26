@@ -17,6 +17,8 @@ public struct Router {
   
   /// Possibile errors while performing the routing operations.
   public enum RoutingError {
+    /// The view controller is trying to access a navigationController that does not exist.
+    case navigationControllerNotFound
     /// ViewController missing from `screensAndDestinations`.
     case viewControllerNotFound
     /// Failed to properly cast the viewmodel.
@@ -25,6 +27,9 @@ public struct Router {
     /// The message to display associated to the error.
     var message: String {
       switch self {
+      case .navigationControllerNotFound:
+        return "The view controller is trying to access a `UINavigationController` that does not exist."
+        
       case .viewControllerNotFound:
         return "Identifier is not associated to a RoutableViewController. Update your `screensAndDestinations`."
         
@@ -134,6 +139,37 @@ public struct Router {
             completion?()
         })
       }
+    }
+  }
+  
+  /// Pops the UINavigationController to the desired view controller and optionally assigns a new viewmodel to it.
+  /// - Parameters:
+  ///   - screen: The identifier of the desired view controller.
+  ///   - viewModel: A new view model to assign to the destination view model. Defaults to nil.
+  ///   - animated: Whether or not to animate the pop. Defaults to true.
+  ///   - completion: An optional completion to execute after popping to the desired view controller. Defaults to nil.
+  public func popTo(screen: ScreenIdentifier, with viewModel: BMViewModel? = nil, animated: Bool = true, completion: Router.Completion? = nil) {
+    self.routingQueue.async {
+      self.semaphore.wait()
+      
+      let topViewController = Router.topViewController()
+      guard let navigationController = topViewController.navigationController else { fatalError(RoutingError.navigationControllerNotFound.message) }
+      
+      let stack = navigationController.viewControllers
+      guard let foundVC = stack.filter ({($0 as? RoutableViewController)?.screenIdentifier == screen}).last else {
+        fatalError(RoutingError.viewControllerNotFound.message)
+      }
+      
+      if let vm = viewModel {
+        let assigned = (foundVC as? RoutableViewController)?.assign(model: vm)
+        guard assigned == true else {
+          fatalError(RoutingError.failedToAssignViewModel.message)
+        }
+      }
+      navigationController.popToViewController(foundVC, animated: animated)
+      
+      guard animated, let coordinator = navigationController.transitionCoordinator else { DispatchQueue.main.async { completion?() }; return }
+      coordinator.animate(alongsideTransition: nil) { _ in completion?() }
     }
   }
 }

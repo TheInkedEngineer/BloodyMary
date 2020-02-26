@@ -8,7 +8,7 @@ import BloodyMary
 import Foundation
 
 class YellowViewController: BMViewController<YellowView>, Routable {
-  static var screenIdentifier: ScreenIdentifier {
+  var screenIdentifier: ScreenIdentifier {
     Screen.yellow.rawValue
   }
 }
