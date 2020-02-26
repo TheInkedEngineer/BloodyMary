@@ -45,11 +45,13 @@ internal extension Router {
   func present(
     _ destination: UIViewController,
     over viewController: UIViewController = Router.topViewController(),
-    presentation style: UIModalPresentationStyle,
+    presentationStyle: UIModalPresentationStyle,
+    transitionStyle: UIModalTransitionStyle,
     animated: Bool = true,
     completion: Router.Completion? = nil
   ) {
-    destination.modalPresentationStyle = style
+    destination.modalPresentationStyle = presentationStyle
+    destination.modalTransitionStyle = transitionStyle
     viewController.present(destination, animated: animated, completion: completion)
   }
 }
