@@ -66,7 +66,7 @@ public struct Router {
     routableElements: [AnyRoutableObject],
     completion: RoutingCompletion? = nil
   ) {
-    if routableElements.isEmpty {return }
+    if routableElements.isEmpty { return }
     
     let navigationGroup = DispatchGroup()
     
