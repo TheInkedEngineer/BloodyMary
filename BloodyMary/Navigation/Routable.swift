@@ -27,7 +27,7 @@ public protocol Routable: AnyObject {
   ///      }
   ///    }
   /// ```
-  static var screenIdentifier: ScreenIdentifier { get }
+  var screenIdentifier: ScreenIdentifier { get }
   
   /// Due to limitations with generics, and the inability to leverage `Type Erasure` in this specific case,
   /// It is impossible to automatically cast an extracted `RoutableViewController` to its right type,
