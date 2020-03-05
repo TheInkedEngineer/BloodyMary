@@ -114,6 +114,17 @@ public struct Router {
     }
   }
   
+  /// Shows the routable element on the screen.
+  /// - Parameters:
+  ///   - routableElement: The screen to display with its configuration.
+  ///   - completion: An optional completion to execute after presenting all elements. Defaults to nil.
+  public func show(
+    routableElement: AnyRoutableObject,
+    completion: RoutingCompletion? = nil
+  ) {
+    show(routableElements: [routableElement], completion: completion)
+  }
+  
   /// Hides the top most view controller.
   /// - Parameters:
   ///   - animated: hiding is animated or not. Defaults to `true`.
