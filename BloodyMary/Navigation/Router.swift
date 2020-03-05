@@ -122,36 +122,7 @@ public struct Router {
     routableElement: AnyRoutableObject,
     completion: RoutingCompletion? = nil
   ) {
-    let vc = configureVC(of: routableElement)
-    self.routingQueue.async {
-      self.semaphore.wait()
-      DispatchQueue.main.async {
-        switch routableElement.navigationStyle {
-        case .stack(let presentationStyle, let navigationController):
-          navigationController?.modalPresentationStyle = presentationStyle
-          self.push(
-            vc,
-            to: navigationController,
-            animated: routableElement.animated,
-            completion: {
-              self.semaphore.signal()
-              completion?()
-          })
-          
-        case .modal(let presentationStyle, let navigationController, let transitionStyle):
-          let toPresent = navigationController == nil ? vc : UINavigationController(rootViewController: vc)
-          self.present(
-            toPresent,
-            presentationStyle: presentationStyle,
-            transitionStyle: transitionStyle,
-            animated: routableElement.animated,
-            completion: {
-              self.semaphore.signal()
-              completion?()
-          })
-        }
-      }
-    }
+    show(routableElements: [routableElement], completion: completion)
   }
   
   /// Hides the top most view controller.
