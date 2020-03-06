@@ -14,10 +14,6 @@ import UIKit
 ///
 /// The `BMViewController` gives you access to a `rootView` which is the view properly casted.
 open class BMViewController<View: BMViewWithViewControllerAndViewModel & UIView>: UIViewController {
-  
-  /// A flag used to check whether or not the first activation of constraints took place or not.
-  /// This flag is needed since `viewWillLayoutSubviews` is called several times, but constriants should be added once.
-  private var didActivateConstraints = false
 
   /// The rootView associated with the `BMViewController`.
   public var rootView: View {
@@ -57,6 +53,7 @@ open class BMViewController<View: BMViewWithViewControllerAndViewModel & UIView>
     view.viewController = self
     view.configure()
     view.style()
+    view.layout()
     self.view = view
   }
 
@@ -68,15 +65,6 @@ open class BMViewController<View: BMViewWithViewControllerAndViewModel & UIView>
       self.rootView.viewModel = vm
     }
     self.setupInteractions()
-  }
-  
-  /// Called when view about to layout subviews.
-  open override func viewWillLayoutSubviews() {
-    guard !self.didActivateConstraints else {
-      return
-    }
-    self.rootView.layout()
-    self.didActivateConstraints = true
   }
 
   /// Called everytime the VM needs to be updated.
@@ -143,7 +131,7 @@ public class BMContainerView: UIView {
 // MARK: - Base implementation for Routable's `assign`
 
 extension BMViewController {
-  public func assign(model: Any) -> Bool {
+  open func assign(model: Any) -> Bool {
     viewModel = model as? View.VM
     return viewModel != nil
   }

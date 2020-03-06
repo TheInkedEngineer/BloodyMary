@@ -13,12 +13,13 @@ public enum NavigationStyle {
   /// An optional custom `UINavigationController` can be passed. However if a `UINavigationController` is already present
   /// on the top most view controller in the hierarchy, the value passed is discarded.
   case stack(
-    style: UIModalPresentationStyle = .overCurrentContext,
+    presentationStyle: UIModalPresentationStyle = .overCurrentContext,
     navigationController: UINavigationController? = nil
   )
   /// Presents the view controller in a modal way. `UIModalPresentationStyle` defaults to `.fullScreen`.
   case modal(
-    style: UIModalPresentationStyle = .fullScreen,
-    navigationController: UINavigationController? = nil
+    presentationStyle: UIModalPresentationStyle = .fullScreen,
+    navigationController: UINavigationController? = nil,
+    transitionStyle: UIModalTransitionStyle = .coverVertical
   )
 }

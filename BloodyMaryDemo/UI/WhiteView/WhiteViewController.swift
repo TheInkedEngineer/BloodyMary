@@ -8,16 +8,7 @@ import BloodyMary
 import Foundation
 
 class WhiteViewController: BMViewController<WhiteView>, Routable {
-  
-  func assign(model: Any) -> Bool {
-    guard let model = model as? WhiteViewModel else {
-      return false
-    }
-    self.viewModel = model
-    return true
-  }
-  
-  static var screenIdentifier: ScreenIdentifier {
+  var screenIdentifier: ScreenIdentifier {
     Screen.white.rawValue
   }
   
@@ -31,7 +22,7 @@ class WhiteViewController: BMViewController<WhiteView>, Routable {
       )
       
       let greenRoutableObject = RoutableObject(
-        screenIdentifier: GreenViewController.screenIdentifier,
+        screenIdentifier: Screen.green.rawValue,
         viewModel: GreenViewModel(),
         navigationStyle: .modal(),
         animated: false
