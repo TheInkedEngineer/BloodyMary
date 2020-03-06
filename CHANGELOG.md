@@ -14,6 +14,7 @@ All relative changes will be documented in this file. \
 ## 1.2.0
 ### March 5, 2020
 
+* `screenIdentifier` is no longer static.
 * Add `show` without having to pass an array.
 * Moved `layout()` to loadView.
 * Add ability to pop to a certain view controller given its routable identifier.
