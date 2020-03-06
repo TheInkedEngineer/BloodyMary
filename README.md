@@ -11,8 +11,9 @@
 `BloodyMary` has its own custom navigation system layer that works on top on Apple's native navigation system so none of the Apple magic is lost. `BloodyMary`'s navigation system can work next to Apple's way with no problem what so ever.
 
 `BloodyMary`'s  navigation system aims to help you write the least code needed to get the most out of your app. You provide the SDK with the routes identifiers and their respective view controllers, and BloodyMary does the rest. From instantiating the correct VC to properly pushing it or presenting it etc..
+The `show` and `hide` functions are done on a single queue in a synchronous way.
 
-The `1.1.0` is the version containing the navigation system, currently being tested on different `WiseEmotions` libraries and `Telepass` iOS app.
+The `1.2.0` is the version containing the navigation system, currently being used on different `WiseEmotions` libraries and `Telepass` iOS app.
 
 ### RoadMap
 
@@ -159,7 +160,7 @@ class RedViewController: BMViewController<RedView>, Routable {
       )
       
       DependenciesContainer.shared.router.show(
-        routableElements: [greenRoutableObject], completion: nil)
+        routableElements: greenRoutableObject, completion: nil)
     }
   }
 }
