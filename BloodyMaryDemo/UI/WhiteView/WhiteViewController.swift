@@ -27,9 +27,7 @@ class WhiteViewController: BMViewController<WhiteView>, Routable {
         navigationStyle: .modal(),
         animated: false
       )
-      
-      DependenciesContainer.shared.router.show(
-        routableElements: [redRoutableObject, greenRoutableObject], completion: nil)
+      DependenciesContainer.shared.router.show(routableElements: [redRoutableObject, greenRoutableObject], completion: nil)
     }
   }
 }

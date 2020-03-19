@@ -7,29 +7,14 @@
 import Foundation
 
 // MARK: - Helpers
-#warning("""
-Checkout how to manage iOS13
-'keyWindow' was deprecated in iOS 13.0:
-Should not be used for applications that support multiple scenes
-as it returns a key window across all connected scenes
 
-Currently it is not a major problem, since it only supports iOS (not iPad OS)
-and therefore it is limited to one screen.
-""")
-internal extension Router {
-  /// Initializes the view controller from the passed object and assigns its view model.
-  /// - Parameter object: The `RoutableObject` to configure.
-  func configureVC(of object: AnyRoutableObject) -> UIViewController {
-    guard let vc = self.screensAndDestinations[object.screenIdentifier]?.init() else { fatalError(RoutingError.viewControllerNotFound.message) }
-    let assigningViewModelWasSuccessful = vc.assign(model: object.anyViewModel as Any)
-    guard assigningViewModelWasSuccessful else { fatalError(RoutingError.failedToAssignViewModel.message) }
-    return vc
-  }
-  
+public extension Router {
   /// Iterates over the navigation stack and returns the top view controller of the stack.
   /// Should be called `ONLY` after keywindow is set and made visible.
   /// - Parameter viewController: The root view controller from which to start iterating.
-  static func topViewController(root viewController: UIViewController = UIApplication.shared.keyWindow!.rootViewController!) -> UIViewController {
+  static func topViewController(
+    root viewController: UIViewController = UIApplication.shared.keyWindow!.rootViewController!
+  ) -> UIViewController {
     if
       let navigationController = viewController as? UINavigationController,
       let visibleViewController = navigationController.visibleViewController {
@@ -47,6 +32,26 @@ internal extension Router {
     }
     
     return viewController
+  }
+}
+
+#warning("""
+Checkout how to manage iOS13
+'keyWindow' was deprecated in iOS 13.0:
+Should not be used for applications that support multiple scenes
+as it returns a key window across all connected scenes
+
+Currently it is not a major problem, since it only supports iOS (not iPad OS)
+and therefore it is limited to one screen.
+""")
+internal extension Router {
+  /// Initializes the view controller from the passed object and assigns its view model.
+  /// - Parameter object: The `RoutableObject` to configure.
+  func configureVC(of object: AnyRoutableObject) -> UIViewController {
+    guard let vc = self.screensAndDestinations[object.screenIdentifier]?.init() else { fatalError(RoutingError.viewControllerNotFound.message) }
+    let assigningViewModelWasSuccessful = vc.assign(model: object.anyViewModel as Any)
+    guard assigningViewModelWasSuccessful else { fatalError(RoutingError.failedToAssignViewModel.message) }
+    return vc
   }
 }
 

@@ -16,7 +16,8 @@ class RedViewController: BMViewController<RedView>, Routable {
     super.setupInteractions()
     
     self.rootView.didTapButton = {
-      DependenciesContainer.shared.router.hideTopViewController()
+      DependenciesContainer.shared.router.showPDFViewController(url: URL(string: "http://www.africau.edu/images/default/sample.pdf")!)
+//      DependenciesContainer.shared.router.hideTopViewController()
     }
   }
 }
