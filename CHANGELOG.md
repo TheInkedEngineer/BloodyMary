@@ -6,11 +6,20 @@ All relative changes will be documented in this file. \
 ***
 
 ### 1.X Releases
+- `1.3.x` Releases - [1.3.0](#120)
 - `1.2.x` Releases - [1.2.0](#120)
 - `1.1.x` Releases - [1.1.0](#110)
 - `1.0.x` Releases - [1.0.0](#100)
 
 ***
+## 1.3.0 
+### March 19, 2020
+
+* Introduce `PDFViewController`.
+* Add `showPDFViewController(url: URL)` and `showPDFViewController(_ vc: PDFViewController)`
+* Add `showSafariViewController(url: URL, presentationStyle: UIModalPresentationStyle, animated: Bool)`
+* Made `Router.topViewController()` public
+
 ## 1.2.0
 ### March 5, 2020
 
