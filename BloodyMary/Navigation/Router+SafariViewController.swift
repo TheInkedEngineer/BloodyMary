@@ -20,7 +20,7 @@ public extension Router {
           presentationStyle: presentationStyle,
           transitionStyle: .coverVertical,
           animated: animated,
-          completion: {self.semaphore.signal()}
+          completion: { self.semaphore.signal() }
         )
       }
     }

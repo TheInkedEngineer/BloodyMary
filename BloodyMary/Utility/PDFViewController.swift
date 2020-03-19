@@ -9,15 +9,13 @@ import PDFKit
 
 /// A `PDFViewController` is `UIViewController` with an integrated `PDFView` inside of it.
 /// It is assumed that this ViewController will always be inside a navigaiton controller and therefore the `dismissButtonItem` is set as the `leftBarButtonItem` of the `navigationItem`.
-/// THe `dismissButtonItem` is customisable.
+/// The `dismissButtonItem` is customisable.
 public class PDFViewController: UIViewController {
   
   // MARK: - Properties
   
   /// The back button to dismiss the `PDFView`.
-  public var dismissButtonItem = UIBarButtonItem(title: "Dismiss", style: .plain, target: nil, action: #selector(tappedDismissButton)) {
-    didSet { navigationItem.leftBarButtonItem = dismissButtonItem }
-  }
+  public var dismissButtonItem: UIBarButtonItem! { didSet { navigationItem.leftBarButtonItem = dismissButtonItem } }
   
   /// The `PDF` `URL` to open.
   private var pdfURL: URL
@@ -41,7 +39,6 @@ public class PDFViewController: UIViewController {
     view.backgroundColor = .groupTableViewBackground
     configurePDFView()
     configureNavigationbar()
-    navigationItem.leftBarButtonItem = dismissButtonItem
   }
   
   // MARK: - Helpers
@@ -51,6 +48,13 @@ public class PDFViewController: UIViewController {
     navigationController?.navigationBar.shadowImage = UIImage()
     navigationController?.navigationBar.isTranslucent = true
     navigationController?.view.backgroundColor = .clear
+    dismissButtonItem = {
+      if #available(iOS 13.0, *) {
+        return UIBarButtonItem(barButtonSystemItem: .close, target: nil, action: #selector(tappedDismissButton))
+      } else {
+        return UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(tappedDismissButton))
+      }
+    }()
   }
   
   private func configurePDFView() {

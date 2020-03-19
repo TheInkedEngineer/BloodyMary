@@ -14,7 +14,7 @@ public extension Router {
       self.semaphore.wait()
       DispatchQueue.main.async {
         let pdfViewController = PDFViewController(url: url)
-        self.push(pdfViewController, completion: {self.semaphore.signal()})
+        self.push(pdfViewController, completion: { self.semaphore.signal() })
       }
     }
   }
@@ -25,7 +25,7 @@ public extension Router {
     self.routingQueue.async {
       self.semaphore.wait()
       DispatchQueue.main.async {
-        self.push(vc, completion: {self.semaphore.signal()})
+        self.push(vc, completion: { self.semaphore.signal() })
       }
     }
   }
