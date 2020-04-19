@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>BMViewController Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Class/BMViewController" class="dashAnchor"></a>
+    <a title="BMViewController Class Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">BloodyMary 1.3.1 Docs</a> (93% documented)</p>
+        <p class="header-right"><a href="https://github.com/TheInkedEngineer/"><img src="../img/gh.png"/>View on GitHub</a></p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">BloodyMary Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        BMViewController Class Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/BMContainerView.html">BMContainerView</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/BMViewController.html">BMViewController</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PDFViewController.html">PDFViewController</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/NavigationStyle.html">NavigationStyle</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/Thread.html">Thread</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/UINavigationController.html">UINavigationController</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/UITabBarController.html">UITabBarController</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/UIView.html">UIView</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/UIViewController.html">UIViewController</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/AnyRoutableObject.html">AnyRoutableObject</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/BMView.html">BMView</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols.html#/s:10BloodyMary11BMViewModelP">BMViewModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/BMViewWithViewControllerAndViewModel.html">BMViewWithViewControllerAndViewModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/BMViewWithViewModel.html">BMViewWithViewModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/InspectableHierarchy.html">InspectableHierarchy</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/InspectablePresentedViewController.html">InspectablePresentedViewController</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/Routable.html">Routable</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/RoutingConfigurationProvider.html">RoutingConfigurationProvider</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/RoutableObject.html">RoutableObject</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Router.html">Router</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Router/RoutingError.html">– RoutingError</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Typealiases.html">Type Aliases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:10BloodyMary22RoutableViewControllera">RoutableViewController</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:10BloodyMary5Routea">Route</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:10BloodyMary17RoutingCompletiona">RoutingCompletion</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:10BloodyMary16ScreenIdentifiera">ScreenIdentifier</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>BMViewController</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">class</span> <span class="kt">BMViewController</span><span class="o">&lt;</span><span class="kt">View</span><span class="o">&gt;</span> <span class="p">:</span> <span class="kt">UIViewController</span> <span class="k">where</span> <span class="kt">View</span> <span class="p">:</span> <span class="kt">UIView</span><span class="p">,</span> <span class="kt">View</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/BMViewWithViewControllerAndViewModel.html">BMViewWithViewControllerAndViewModel</a></span></code></pre>
+
+                </div>
+              </div>
+            <h2 id='overview' class='heading'>Overview</h2>
+
+<p>A <code>BMViewController</code> replaces the default <code>UIViewController</code>. It manages a single screen,
+and listen to the users interactions with it.</p>
+
+<p>Refer to <strong>BMViewWithViewControllerAndViewModel</strong> to understand the architecture of a view.</p>
+
+<p>The <code>BMViewController</code> gives you access to a <code>rootView</code> which is the view properly casted.</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10BloodyMary16BMViewControllerC8rootViewxvp"></a>
+                    <a name="//apple_ref/swift/Property/rootView" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10BloodyMary16BMViewControllerC8rootViewxvp">rootView</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The rootView associated with the <code>BMViewController</code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">rootView</span><span class="p">:</span> <span class="kt">View</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/TheInkedEngineer/blob/master/BloodyMary/Core/BMViewController.swift#L19-L22">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10BloodyMary16BMViewControllerC9viewModel2VMQzSgvp"></a>
+                    <a name="//apple_ref/swift/Property/viewModel" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10BloodyMary16BMViewControllerC9viewModel2VMQzSgvp">viewModel</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The latest <code>ViewModel</code> received by this <code>BMViewController</code>
+This should not be directly set. Please use <code>update(to: View.VM)</code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">viewModel</span><span class="p">:</span> <span class="kt">View</span><span class="o">.</span><span class="kt">VM</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/TheInkedEngineer/blob/master/BloodyMary/Core/BMViewController.swift#L26-L37">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10BloodyMary16BMViewControllerCACyxGycfc"></a>
+                    <a name="//apple_ref/swift/Method/init()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10BloodyMary16BMViewControllerCACyxGycfc">init()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>An more convenient initializer.
+Since we are not not using the storyboard</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/TheInkedEngineer/blob/master/BloodyMary/Core/BMViewController.swift#L41-L43">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10BloodyMary16BMViewControllerC5coderACyxGSgSo7NSCoderC_tcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(coder:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10BloodyMary16BMViewControllerC5coderACyxGSgSo7NSCoderC_tcfc">init(coder:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Required init.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">required</span> <span class="kd">public</span> <span class="nf">init</span><span class="p">?(</span><span class="n">coder</span> <span class="nv">aDecoder</span><span class="p">:</span> <span class="kt">NSCoder</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/TheInkedEngineer/blob/master/BloodyMary/Core/BMViewController.swift#L46-L48">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10BloodyMary16BMViewControllerC8loadViewyyF"></a>
+                    <a name="//apple_ref/swift/Method/loadView()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10BloodyMary16BMViewControllerC8loadViewyyF">loadView()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Used to load the specific main view managed by this view controller.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">override</span> <span class="kd">public</span> <span class="kd">func</span> <span class="nf">loadView</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/TheInkedEngineer/blob/master/BloodyMary/Core/BMViewController.swift#L51-L58">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10BloodyMary16BMViewControllerC11viewDidLoadyyF"></a>
+                    <a name="//apple_ref/swift/Method/viewDidLoad()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10BloodyMary16BMViewControllerC11viewDidLoadyyF">viewDidLoad()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Called after the controller&#39;s view is loaded into memory.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">override</span> <span class="kd">open</span> <span class="kd">func</span> <span class="nf">viewDidLoad</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/TheInkedEngineer/blob/master/BloodyMary/Core/BMViewController.swift#L61-L68">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10BloodyMary16BMViewControllerC6update2toy2VMQz_tF"></a>
+                    <a name="//apple_ref/swift/Method/update(to:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10BloodyMary16BMViewControllerC6update2toy2VMQz_tF">update(to:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Called everytime the VM needs to be updated.
+Should be called on the main Thread.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">update</span><span class="p">(</span><span class="n">to</span> <span class="nv">newModel</span><span class="p">:</span> <span class="kt">View</span><span class="o">.</span><span class="kt">VM</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>newModel</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The new <code>ViewModel</code></p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/TheInkedEngineer/blob/master/BloodyMary/Core/BMViewController.swift#L74-L76">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10BloodyMary16BMViewControllerC10willUpdate3newy2VMQzSg_tF"></a>
+                    <a name="//apple_ref/swift/Method/willUpdate(new:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10BloodyMary16BMViewControllerC10willUpdate3newy2VMQzSg_tF">willUpdate(new:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Called just before the update, override point for subclasses.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">willUpdate</span><span class="p">(</span><span class="nv">new</span><span class="p">:</span> <span class="kt">View</span><span class="o">.</span><span class="kt">VM</span><span class="p">?)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/TheInkedEngineer/blob/master/BloodyMary/Core/BMViewController.swift#L79">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10BloodyMary16BMViewControllerC9didUpdate3oldy2VMQzSg_tF"></a>
+                    <a name="//apple_ref/swift/Method/didUpdate(old:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10BloodyMary16BMViewControllerC9didUpdate3oldy2VMQzSg_tF">didUpdate(old:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Called right after the update, override point for subclasses.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">didUpdate</span><span class="p">(</span><span class="nv">old</span><span class="p">:</span> <span class="kt">View</span><span class="o">.</span><span class="kt">VM</span><span class="p">?)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/TheInkedEngineer/blob/master/BloodyMary/Core/BMViewController.swift#L82">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10BloodyMary16BMViewControllerC17setupInteractionsyyF"></a>
+                    <a name="//apple_ref/swift/Method/setupInteractions()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10BloodyMary16BMViewControllerC17setupInteractionsyyF">setupInteractions()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Asks to setup the interaction with the managed view, override point for subclasses.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">setupInteractions</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/TheInkedEngineer/blob/master/BloodyMary/Core/BMViewController.swift#L85">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Containment"></a>
+                <a name="//apple_ref/swift/Section/Containment" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Containment"></a>
+                  <h3 class="section-name"><p>Containment</p>
+</h3>
+                </div>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10BloodyMary16BMViewControllerC3add_2toyACyqd__G_AA15BMContainerViewCtSo6UIViewCRbd__AA0c4Withhd3AndH5ModelRd__lF"></a>
+                    <a name="//apple_ref/swift/Method/add(_:to:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10BloodyMary16BMViewControllerC3add_2toyACyqd__G_AA15BMContainerViewCtSo6UIViewCRbd__AA0c4Withhd3AndH5ModelRd__lF">add(_:to:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Adds a <code>BMViewController</code> and its root view to</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="n">add</span><span class="o">&lt;</span><span class="kt">V</span><span class="p">:</span> <span class="kt"><a href="../Protocols/BMViewWithViewControllerAndViewModel.html">BMViewWithViewControllerAndViewModel</a></span> <span class="o">&amp;</span> <span class="kt">UIView</span><span class="o">&gt;</span><span class="p">(</span>
+  <span class="n">_</span> <span class="nv">child</span><span class="p">:</span> <span class="kt">BMViewController</span><span class="o">&lt;</span><span class="kt">V</span><span class="o">&gt;</span><span class="p">,</span>
+  <span class="n">to</span> <span class="nv">container</span><span class="p">:</span> <span class="kt"><a href="../Classes/BMContainerView.html">BMContainerView</a></span>
+<span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>child</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The child view controller to add to the hierarchy.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>container</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The container in which the view of the child should go in.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/TheInkedEngineer/blob/master/BloodyMary/Core/BMViewController.swift#L100-L107">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10BloodyMary16BMViewControllerC6removeyyF"></a>
+                    <a name="//apple_ref/swift/Method/remove()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10BloodyMary16BMViewControllerC6removeyyF">remove()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Removes a <code>BMViewController</code> and its view from the parent view controller.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">remove</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/TheInkedEngineer/blob/master/BloodyMary/Core/BMViewController.swift#L110-L117">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Base%20implementation%20for%20Routable&#39;s%20%60assign%60"></a>
+                <a name="//apple_ref/swift/Section/Base implementation for Routable&#39;s `assign`" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Base%20implementation%20for%20Routable&#39;s%20%60assign%60"></a>
+                  <h3 class="section-name"><p>Base implementation for Routable&rsquo;s <code>assign</code></p>
+</h3>
+                </div>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10BloodyMary16BMViewControllerC6assign5modelSbyp_tF"></a>
+                    <a name="//apple_ref/swift/Method/assign(model:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10BloodyMary16BMViewControllerC6assign5modelSbyp_tF">assign(model:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">assign</span><span class="p">(</span><span class="nv">model</span><span class="p">:</span> <span class="kt">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/TheInkedEngineer/blob/master/BloodyMary/Core/BMViewController.swift#L134-L137">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>TheInkedEngineer</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.1</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>
