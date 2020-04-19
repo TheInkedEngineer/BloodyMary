@@ -12,7 +12,10 @@ All relative changes will be documented in this file. \
 - `1.0.x` Releases - [1.0.0](#100)
 
 ***
-## 1.3.0 
+## 1.3.0
+### April 19, 2020
+* Add availability >= iOS 11 for PDFViewController
+
 ### March 19, 2020
 
 * Introduce `PDFViewController`.
