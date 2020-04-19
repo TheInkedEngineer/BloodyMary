@@ -79,7 +79,7 @@ public extension BMViewWithViewModel {
   /// Swift is inferring the Type through the `oldModel` parameter of the `update(oldModel: BMViewModel?)` method
   var viewModel: VM? {
     get {
-      return objc_getAssociatedObject(self, &modelKey) as? VM
+      objc_getAssociatedObject(self, &modelKey) as? VM
     }
 
     set {

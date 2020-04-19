@@ -35,11 +35,8 @@ public protocol Routable: AnyObject {
   /// To work around it, `assign(model: Any) -> Bool` is introduced and should be used as follow:
   /// ```swift
   /// func assign(model: Any) -> Bool {
-  ///   guard let model = model as? DemoViewModel else {
-  ///     return false
-  ///   }
-  ///   self.viewModel = model
-  ///   return true
+  ///   viewModel = model as? View.VM
+  ///   return viewModel != nil
   /// }
   ///
   @discardableResult

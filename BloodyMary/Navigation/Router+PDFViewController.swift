@@ -7,9 +7,10 @@
 import Foundation
 
 public extension Router {
-  @available(iOS 11, *)
+  
   /// Presents the `PDFViewController` on top of the stack.
   /// - Parameter url: The URL to pass the the `PDFView` inside controller.
+  @available(iOS 11, *)
   func showPDFViewController(url: URL) {
     self.routingQueue.async {
       self.semaphore.wait()
@@ -20,9 +21,9 @@ public extension Router {
     }
   }
   
-  @available(iOS 11, *)
   /// Presents an instance of `PDFViewController` on top of the stack.
   /// - Parameter vc: The `PDFViewController` instance.
+  @available(iOS 11, *)
   func showPDFViewController(_ vc: PDFViewController) {
     self.routingQueue.async {
       self.semaphore.wait()

@@ -18,7 +18,7 @@ open class BMViewController<View: BMViewWithViewControllerAndViewModel & UIView>
   /// The rootView associated with the `BMViewController`.
   public var rootView: View {
     // swiftlint:disable:next force_cast
-    return self.view as! View
+    self.view as! View
   }
 
   /// The latest `ViewModel` received by this `BMViewController`
@@ -44,7 +44,7 @@ open class BMViewController<View: BMViewWithViewControllerAndViewModel & UIView>
 
   /// Required init.
   required public init?(coder aDecoder: NSCoder) {
-    return nil
+    nil
   }
 
   /// Used to load the specific main view managed by this view controller.
@@ -131,6 +131,7 @@ public class BMContainerView: UIView {
 // MARK: - Base implementation for Routable's `assign`
 
 extension BMViewController {
+  /// Default implementation of `Routable's` assign method.
   open func assign(model: Any) -> Bool {
     viewModel = model as? View.VM
     return viewModel != nil
