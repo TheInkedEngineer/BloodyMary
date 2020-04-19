@@ -89,7 +89,7 @@ open class BMViewController<View: BMViewWithViewControllerAndViewModel & UIView>
   }
 }
 
-// MARK: - Containement
+// MARK: - Containment
 
 public extension BMViewController {
   

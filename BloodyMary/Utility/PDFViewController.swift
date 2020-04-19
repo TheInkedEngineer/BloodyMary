@@ -7,8 +7,9 @@
 import UIKit
 import PDFKit
 
+@available(iOS 11, *)
 /// A `PDFViewController` is `UIViewController` with an integrated `PDFView` inside of it.
-/// It is assumed that this ViewController will always be inside a navigaiton controller and therefore the `dismissButtonItem` is set as the `leftBarButtonItem` of the `navigationItem`.
+/// It is assumed that this ViewController will always be inside a navigation controller and therefore the `dismissButtonItem` is set as the `leftBarButtonItem` of the `navigationItem`.
 /// The `dismissButtonItem` is customisable.
 public class PDFViewController: UIViewController {
   
@@ -35,7 +36,6 @@ public class PDFViewController: UIViewController {
   
   public override func viewDidLoad() {
     super.viewDidLoad()
-    guard #available(iOS 11.0, *) else { fatalError("You Should not be using the view controller for iOS < 11.0") }
     view.backgroundColor = .groupTableViewBackground
     configurePDFView()
     configureNavigationbar()
@@ -58,9 +58,6 @@ public class PDFViewController: UIViewController {
   }
   
   private func configurePDFView() {
-    guard #available(iOS 11.0, *) else {
-      return
-    }
     let pdfView: PDFView = {
       // the 100 is needed so the PDFView don't end up below the navigation bar. THe number itself is not relevant, apparently, as long as it's big.
       let pdfView = PDFView(frame: CGRect(x: 0, y: 100, width: view.frame.width, height: view.frame.height))
