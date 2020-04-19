@@ -1,0 +1,26 @@
+{
+  "warnings": [
+    {
+      "file": "/Users/TheInkedEngineer/Code/TheInkedEngineer/BloodyMary/BloodyMary/Utility/PDFViewController.swift",
+      "line": 14,
+      "symbol": "PDFViewController",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TheInkedEngineer/Code/TheInkedEngineer/BloodyMary/BloodyMary/Utility/PDFViewController.swift",
+      "line": 26,
+      "symbol": "PDFViewController.init(url:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/TheInkedEngineer/Code/TheInkedEngineer/BloodyMary/BloodyMary/Utility/PDFViewController.swift",
+      "line": 37,
+      "symbol": "PDFViewController.viewDidLoad()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    }
+  ],
+  "source_directory": "/Users/TheInkedEngineer/Code/TheInkedEngineer/BloodyMary"
+}

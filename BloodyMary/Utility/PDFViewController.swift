@@ -7,10 +7,10 @@
 import UIKit
 import PDFKit
 
-@available(iOS 11, *)
 /// A `PDFViewController` is `UIViewController` with an integrated `PDFView` inside of it.
 /// It is assumed that this ViewController will always be inside a navigation controller and therefore the `dismissButtonItem` is set as the `leftBarButtonItem` of the `navigationItem`.
 /// The `dismissButtonItem` is customisable.
+@available(iOS 11, *)
 public class PDFViewController: UIViewController {
   
   // MARK: - Properties
@@ -23,6 +23,7 @@ public class PDFViewController: UIViewController {
   
   // MARK: - Init
   
+  /// Initializes the `PDFViewController` with a url that will be opened inside the view controller.
   public init(url: URL) {
     pdfURL = url
     super.init(nibName: nil, bundle: nil)
@@ -34,6 +35,7 @@ public class PDFViewController: UIViewController {
   
   // MARK: - Overloads
   
+  /// overriding the default behaviour of `viewDidLoad` to startup internal functions.
   public override func viewDidLoad() {
     super.viewDidLoad()
     view.backgroundColor = .groupTableViewBackground
